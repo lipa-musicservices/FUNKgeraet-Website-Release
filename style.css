@@ -81,8 +81,8 @@ body {
     vertical-align: middle;
     width: 100%;
 
-    border-color: white;
-    border-style: solid;
+    /* border-color: white;
+    border-style: solid; */
 
     box-shadow: 5px 5px 5px black;
   }
@@ -152,6 +152,8 @@ body {
     border-width: 1%;
     border-color: white;
     border-style: solid;
+
+    /* box-shadow: 5px 5px 5px black; */
   }
 
   .overlay {
