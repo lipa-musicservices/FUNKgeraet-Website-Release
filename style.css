@@ -1,0 +1,247 @@
+
+:root{
+  --background: rgb(58, 75, 48);
+} 
+
+body {
+    margin: 0;
+  }
+
+  .TitlePicture{
+    object-fit: fill;
+    width: 100%;
+  }
+
+  .FrameTable{
+    background-color: var(--background);
+    width: 100%;
+  }
+
+  .Headline2{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 30pt;
+    text-align: center;
+  }
+
+  .TitleHeadline{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: clamp(30pt, 10vw, 80pt);
+    text-align: center;
+  }
+
+  .PageBackground{
+    margin-top: -3pt;
+  }
+
+  .StdText{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 15pt;
+    height: auto;
+    min-height: 100pt;
+    margin-top: auto;
+    text-align: justify;
+    line-height: 25pt;
+  }
+
+  .Spacer{
+    background-color: var(--background);
+    height: 10pt;
+  }
+
+  .Headline1{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: clamp(30pt, 10vw, 50pt);
+    text-align: center;
+  }
+
+  .AboutText{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 150%;
+    text-align: justify;
+    line-height: 150%;
+    padding: 5%;
+  }
+
+  .AboutPicture{
+    position: relative;
+    align-items: center;
+    display: grid; /* Necessary for proper alignment inside th */
+    text-align: center; /* Center content inside the div itself */
+    align-content: center;
+  }
+
+  .AboutPictureImg{
+    position: relative;
+    display: grid; /* Necessary for proper alignment inside th */
+    vertical-align: middle;
+    width: 100%;
+
+    border-color: white;
+    border-style: solid;
+
+    box-shadow: 5px 5px 5px black;
+  }
+
+  .BandLinksElement{
+    width: 6%;
+    height: 6%;
+
+    padding: 1%;
+  }
+
+  .AboutWrapper{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .StdText{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 150%;
+    text-align: justify;
+    line-height: 150%;
+  }
+
+  .Headline2{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: clamp(20pt, 10vw, 40pt);
+    text-align: center;
+  }
+
+  .Headline3{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: clamp(15pt, 10vw, 30pt);
+    text-align: center;
+  }
+
+  .BandTable{
+    position: relative;
+    display: grid; /* Necessary for proper alignment inside th */
+    vertical-align: middle;
+  }
+
+  .BandTableImg{
+    position: relative;
+    align-items: center;
+    display: grid; /* Necessary for proper alignment inside th */
+    text-align: center; /* Center content inside the div itself */
+    align-content: center;
+
+    padding: 5%;
+
+  }
+
+  .BandTableImg:hover .overlay{
+    opacity: 1;
+  }
+
+  .BandTableImgElement{
+    display: block;
+    width: 100%;
+    height: auto;
+
+    border-width: 1%;
+    border-color: white;
+    border-style: solid;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgb(58, 75, 48);
+  }
+
+  .OverlayText1 {
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 1.7vw;
+    position: absolute; /* Absolut statt relativ */
+    padding: 0; /* Entfernen des Innenabstands */
+    top: 5%; /* Einheitliche Höhe für alle Texte */
+    left: 50%;
+    -webkit-transform: translateX(-50%); /* Nur horizontales Zentrieren */
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+    vertical-align: top;
+}
+
+  .OverlayText2 {
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 1.2vw;
+    position: absolute; /* Absolut statt relativ */
+    top: 25%; /* Einheitliche Höhe für alle Texte */
+    left: 50%;
+    -webkit-transform: translateX(-50%); /* Nur horizontales Zentrieren */
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: justify;
+    vertical-align: top;
+    width: 80%;
+}
+
+  .OverlayLinks{
+    color: white;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 1.2vw;
+    position: relative;
+    padding: 15%;
+    top: 85%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    vertical-align: bottom;
+  }
+
+  .FrameContentDownloadsTH{
+    border-right: solid 1px white;
+  }
+
+  .DownloadButton{
+    border-style: solid;
+    border-color: white;
+    border-radius: 0.75vw;
+    border-width: 0.25vw;
+    display: inline-block;
+    width: 10vw;
+    height: 9vw;
+
+    line-height: 1.2vw;
+  }
+
+  .DownloadLink{
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 1.1vw;
+    color: white;
+    text-decoration: none;
+  }
+
+  .DownloadImg{
+    margin-top: 1vw;
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .InstagramFeed{
+    background-color: white;
+    border: solid black 2px;
+  }
