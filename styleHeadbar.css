@@ -15,7 +15,7 @@
   
   .MenuBarItem {
     display: inline-block;
-    width: 120pt;
+    width: 150pt;
     height: auto;
     color: white;
     margin-top: 25pt;
@@ -37,4 +37,3 @@
     margin-top: 10pt;
     position: relative;
   }
-  

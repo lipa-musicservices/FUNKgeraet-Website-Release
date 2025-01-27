@@ -11,7 +11,7 @@
     <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
   </head>
 
-  <body>
+  <body onresize="ResizeFunction()" onload="ResizeFunction()">
     <div id="HeadBar"></div>
 
     <div class="PageBackground">
@@ -53,27 +53,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script> 
-
-  $(function(){
+<script>
+  function ResizeFunction() {
+    if (window.innerWidth < 800) {
+      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
+      $("#FootBar").load("FixedPages/FootBar.html"); 
+    }
+    else {
       $("#HeadBar").load("FixedPages/HeadBar.html"); 
       $("#FootBar").load("FixedPages/FootBar.html"); 
-  });
-</script> 
-
-<script>
-  var txtFile1 = new XMLHttpRequest();
-    var allText1 = "";
-
-    txtFile1.onreadystatechange = function () {
-        if (txtFile1.readyState === XMLHttpRequest.DONE && txtFile1.status == 200) {
-          allText1 = txtFile1.responseText;
-          allText1 = allText1.split("\n").join("<br>");
-        }
-
-        document.getElementById('AboutText').innerHTML = allText1;
     }
-    
-    txtFile1.open("GET", "Texts/AboutText.txt", true);
-    txtFile1.send(null);
+  }
 </script>

@@ -15,32 +15,6 @@
   <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
 </head>
 
-<script>
-  function ResizeFunction() {
-    if (window.innerWidth < 600) {
-      document.getElementById('ImgCol').style.width = "0";
-      document.getElementById('TxtCol').style.width = (window.innerWidth * 0.8) + "px";
-      document.getElementById('AboutPictureImg').style.borderWidth = "0";
-    }
-    else {
-      document.getElementById('ImgCol').style.width = (window.innerWidth * 0.3) + "px";
-      document.getElementById('TxtCol').style.width = (window.innerWidth * 0.5) + "px";
-
-      document.getElementById('AboutPictureImg').style.borderWidth = "2px";
-    }
-
-    if (window.innerWidth < 800) {
-      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-    else {
-      $("#HeadBar").load("FixedPages/HeadBar.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-  }
-</script>
-
-
 <body onresize="ResizeFunction()" onload="ResizeFunction()">
   <div id="HeadBar"></div>
 
@@ -52,7 +26,7 @@
         <th class="FrameSides" width="10%"></th>
         <th class="FrameContent" width="80%">
           <div class="Headline1">
-            Über uns
+            Konfigurier die Band für dein Event!
           </div>
         </th>
         <th class="FrameSides" width="10%"></th>
@@ -226,3 +200,16 @@
 </html>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+  function ResizeFunction() {
+    if (window.innerWidth < 800) {
+      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
+      $("#FootBar").load("FixedPages/FootBar.html"); 
+    }
+    else {
+      $("#HeadBar").load("FixedPages/HeadBar.html"); 
+      $("#FootBar").load("FixedPages/FootBar.html"); 
+    }
+  }
+</script>
