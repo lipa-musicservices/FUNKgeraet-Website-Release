@@ -10,6 +10,8 @@ body {
   .TitlePicture{
     object-fit: fill;
     width: 100%;
+
+    margin-bottom: -5pt;
   }
 
   .FrameTable{
