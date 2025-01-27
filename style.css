@@ -247,3 +247,10 @@ body {
     background-color: white;
     border: solid black 2px;
   }
+
+  .MailText{
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 3vw;
+    color: white;
+    text-decoration: none;
+  }
