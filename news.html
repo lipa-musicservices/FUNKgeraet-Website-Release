@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUNKger&aelig;t | News</title>
+  <link rel="stylesheet" href="style.css">
+  </link>
+  <link rel="stylesheet" href="styleHeadbar.css">
+  </link>
+  <link rel="stylesheet" href="styleFootbar.css">
+  </link>
+
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+  
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
+</head>
+
+<script>
+  function ResizeFunction() {
+
+    ActivateMobileView();
+
+    if (window.innerWidth < 800) {
+      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
+      $("#FootBar").load("FixedPages/FootBar.html"); 
+    }
+    else {
+      $("#HeadBar").load("FixedPages/HeadBar.html"); 
+      $("#FootBar").load("FixedPages/FootBar.html"); 
+    }
+  }
+</script>
+
+
+<body onresize="ResizeFunction()" onload="ResizeFunction(); ReadNews()">
+  <div id="HeadBar"></div>
+
+  <div class="PageBackground">
+
+    <div class="Spacer"></div>
+    <table class="FrameTable">
+      <tr>
+        <th class="FrameSides" width="10%"></th>
+        <th class="FrameContent" width="80%">
+          <div class="Headline1">
+            News
+          </div>
+        </th>
+        <th class="FrameSides" width="10%"></th>
+      </tr>
+    </table>
+    <table class="FrameTable">
+      <tr>
+        <th class="FrameSides" width="10%"></th>
+        <th class="FrameContent" width="80%">
+          <table id="NewsTable" class="NewsTable" width="100%">
+
+          </table>
+        </th>
+        <th class="FrameSides" width="10%"></th>
+      </tr>
+    </table>
+    
+    <div class="Spacer"></div>
+    
+    <div class="Spacer"></div>
+    <div class="Spacer"></div>
+  </div>
+  </div>
+
+  <div id="FootBar"></div>
+
+</body>
+
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+  function ActivateMobileView()
+  {
+    if(window.innerWidth < 600)
+    {
+      document.querySelectorAll("[id^='Desktop']").forEach(element => {
+      element.style.display = "none";
+      });
+
+      document.querySelectorAll("[id^='Mobil']").forEach(element => {
+      element.style.display = "block";
+      });
+    }
+    else
+    {
+      document.querySelectorAll("[id^='Mobil']").forEach(element => {
+      element.style.display = "none";
+      });
+
+      document.querySelectorAll("[id^='Desktop']").forEach(element => {
+      element.style.display = "block";
+      });
+
+      const divs = document.querySelectorAll(".OverlayText1Mobil"); // Alle Elemente mit der Klasse 'OverlayText1' auswählen
+      divs.forEach(div => {
+          div.classList.remove("OverlayText1Mobil");  // Alte Klasse entfernen
+          div.classList.add("OverlayText1");          // Neue Klasse hinzufügen
+        });
+
+      const divs2 = document.querySelectorAll(".OverlayText2Mobil"); // Alle Elemente mit der Klasse 'OverlayText1' auswählen
+      divs2.forEach(div => {
+          div.classList.remove("OverlayText2Mobil");  // Alte Klasse entfernen
+          div.classList.add("OverlayText2");          // Neue Klasse hinzufügen
+      });
+    }
+  }
+</script>
+
+<script>
+function ReadNews() {
+    const folderPath = "News/";
+    const filePrefix = "News";
+    const fileExtension = ".txt";
+    const imageExtension = ".png";
+    const hoverImageExtension = "hover.png";  // Für das Bild beim Hover
+    const tableBody = document.getElementById("NewsTable");
+    let fileIndex = 1; // Startindex für die Dateien
+
+    const txtFile = new XMLHttpRequest();
+    txtFile.onreadystatechange = function () {
+        if (txtFile.readyState === XMLHttpRequest.DONE) { // Korrigierte Bedingung
+            if (txtFile.status === 200) {
+                const fileLines = txtFile.responseText.split("\n");
+                
+                console.log(fileLines[0]);
+                console.log(fileLines[1]);
+                console.log(fileLines[2]);
+                // Annahme: Struktur der Datei
+                const headline = fileLines[0].replace("\n","") || "Ohne Titel";
+                const date = fileLines[1].replace("\n","") || "Unbekanntes Datum";
+                const text = fileLines.slice(2).join("<br>") || "Kein Inhalt verfügbar";
+
+                // Neue Tabellenzeile
+                const newRow = document.createElement("tr");
+                const imageHeader = document.createElement("th");
+                const contentHeader = document.createElement("th");
+
+                contentHeader.style.borderBottom = "1px solid rgb(0,255,0)";
+                imageHeader.style.borderBottom = "1px solid rgb(0,255,0)";
+
+                // Container für die Bilder
+                const imageContainer = document.createElement("div");
+                imageContainer.classList.add("News-image-container");
+
+                // Standardbild hinzufügen
+                const defaultImage = document.createElement("img");
+                defaultImage.src = `${folderPath}${filePrefix}${fileIndex}${imageExtension}`;
+                defaultImage.alt = `Bild zu ${filePrefix}${fileIndex}`;
+                defaultImage.classList.add("News-default-image");
+
+                // Hover-Bild hinzufügen
+                const hoverImage = document.createElement("img");
+                hoverImage.src = `${folderPath}${filePrefix}${fileIndex}${hoverImageExtension}`;
+                hoverImage.alt = `Bild zu ${filePrefix}${fileIndex} Hover`;
+                hoverImage.classList.add("News-hover-image");
+
+                // Bilder in den Container einfügen
+                imageContainer.appendChild(defaultImage);
+                imageContainer.appendChild(hoverImage);
+
+                imageHeader.style.width = "50%";
+                contentHeader.style.width = "50%";
+                imageHeader.appendChild(imageContainer);
+
+                // Content-Bereich erstellen
+                const headlineElement = document.createElement("div");
+                headlineElement.textContent = headline;
+                headlineElement.classList.add("News-news-headline");
+
+                const dateElement = document.createElement("div");
+                dateElement.textContent = date;
+                dateElement.classList.add("News-news-date");
+
+                const textElement = document.createElement("div");
+                textElement.innerHTML = text;
+                textElement.classList.add("News-news-text");
+
+                // Elemente zum Content-Header hinzufügen
+                contentHeader.appendChild(headlineElement);
+                contentHeader.appendChild(dateElement);
+                contentHeader.appendChild(textElement);
+
+                // Tabellenzeile zusammenbauen
+                newRow.appendChild(imageHeader);
+                newRow.appendChild(contentHeader);
+                tableBody.appendChild(newRow);
+
+                fileIndex++;  // Zum nächsten Dateinamen weiterzählen
+                const fileName = `${filePrefix}${fileIndex}${fileExtension}`;
+                const filePath = `${folderPath}${fileName}`;
+                txtFile.open("GET", filePath, true);
+                txtFile.send();
+            } else if (txtFile.status === 404) {
+                console.log("Keine weitere Datei gefunden. Vorgang beendet.");
+            }
+        }
+    };
+
+    // Startet das Laden der ersten Datei
+    const fileName = `${filePrefix}${fileIndex}${fileExtension}`;
+    const filePath = `${folderPath}${fileName}`;
+    txtFile.open("GET", filePath, true);
+    txtFile.send();
+}
+
+</script>

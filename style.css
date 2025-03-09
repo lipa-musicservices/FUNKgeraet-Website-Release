@@ -305,10 +305,6 @@ body {
     border-right: solid 1px white;
   }
 
-  .FrameContentDownloadsMobilTH{
-
-  }
-
   .DownloadButton{
     border-style: solid;
     border-color: rgb(255, 255, 255);
@@ -380,3 +376,92 @@ body {
     text-decoration: none;
     padding: 5pt;
   }
+
+  .NewsTable{
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    color: white;
+    font-size: 3vw;
+    text-decoration: none;
+    padding: 5pt;
+
+    background-color: var(--background);
+
+    margin: 0;
+    padding: 0;
+  }
+
+/* Container für die Bilder */
+.News-image-container {
+  position: relative;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Standardbild - wird angezeigt, wenn nicht gehobert wird */
+.News-default-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.5s ease-in-out;
+
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+/* Hover-Bild - wird beim Hover angezeigt */
+.News-hover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+/* Hover-Effekt */
+.News-image-container:hover .News-default-image {
+  opacity: 0;
+}
+
+.News-image-container:hover .News-hover-image {
+  opacity: 1;
+}
+
+/* Schriftgrößen für die News abhängig von der Viewport-Breite */
+.News-news-headline {
+  font-size: 4vw;
+
+  vertical-align: top;
+
+  padding-left: 5%;
+}
+
+.News-news-date {
+  font-size: 1.5vw;
+  font-style: italic;
+  color: gray;
+
+  padding-left: 5%;
+
+  margin: 0;
+  padding: 0;
+}
+
+.News-news-text {
+  font-size: 1.2vw;
+  margin-top: 10px;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    color: white;
+
+    text-align: justify;
+    
+    padding-left: 5%;
+
+    margin: 0;
+}
