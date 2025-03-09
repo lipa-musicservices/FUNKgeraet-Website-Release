@@ -12,9 +12,29 @@ body {
     width: 100%;
 
     margin-bottom: -5pt;
+
+    background-color: var(--background);
   }
 
   .FrameTable{
+    background-color: var(--background);
+    width: 100%;
+  }
+
+  .MobileFrameTable{
+    background-color: var(--background);
+    width: 100%;
+
+    align-items: center;
+    align-self: center;
+  }
+
+  .DesktopFrameTable{
+    background-color: var(--background);
+    width: 100%;
+  }
+
+  .MobilFrameTable{
     background-color: var(--background);
     width: 100%;
   }
@@ -132,14 +152,14 @@ body {
   .Headline2{
     color: rgb(0, 255, 0);
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-size: clamp(20pt, 10vw, 40pt);
+    font-size: clamp(20pt, 8.5vw, 40pt);
     text-align: center;
   }
 
   .Headline3{
     color: rgb(0, 255, 0);
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-size: clamp(15pt, 10vw, 30pt);
+    font-size: clamp(15pt, 7vw, 30pt);
     text-align: center;
   }
 
@@ -190,6 +210,19 @@ body {
     background-color: rgb(22, 22, 22);
   }
 
+  .overlayMobil {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgb(22, 22, 22);
+  }
+
   .OverlayText1 {
     color: rgb(0, 255, 0);
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -222,55 +255,66 @@ body {
 .OverlayText1Mobil {
   color: rgb(0, 255, 0);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 6vw;
-  position: absolute; /* Absolut statt relativ */
-  padding: 0; /* Entfernen des Innenabstands */
-  top: 5%; /* Einheitliche Höhe für alle Texte */
-  left: 50%;
-  -webkit-transform: translateX(-50%); /* Nur horizontales Zentrieren */
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+  font-size: 4.5vw;
+  position: relative; /* Absolut statt relativ */
   text-align: center;
   vertical-align: top;
+
+  padding-left: 5%;
 }
 
 .OverlayText2Mobil {
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 3.5vw;
-  position: absolute; /* Absolut statt relativ */
-  top: 25%; /* Einheitliche Höhe für alle Texte */
-  left: 50%;
-  -webkit-transform: translateX(-50%); /* Nur horizontales Zentrieren */
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%);
+  font-size: 2.8vw;
+  position: relative; /* Absolut statt relativ */
   text-align: justify;
   vertical-align: top;
-  width: 80%;
+  
+  padding-top: 5%;
+  padding-left: 5%;
 }
 
-  .OverlayLinks{
-    color: white;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-size: 1.2vw;
-    position: relative;
-    padding: 15%;
-    top: 85%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-    vertical-align: bottom;
-  }
+.OverlayLinks{
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.2vw;
+  position: relative;
+  padding: 15%;
+  top: 85%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.OverlayLinksMobil{
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.4vw;
+  position: relative;
+  text-align: center;
+  vertical-align: bottom;
+  margin-top: 10%;
+  align-items: center;
+  align-content: center;
+
+  height: 100%;
+}
 
   .FrameContentDownloadsTH{
     border-right: solid 1px white;
   }
 
+  .FrameContentDownloadsMobilTH{
+
+  }
+
   .DownloadButton{
     border-style: solid;
-    border-color: white;
+    border-color: rgb(255, 255, 255);
     border-radius: 0.75vw;
     border-width: 0.25vw;
     display: inline-block;
@@ -280,17 +324,50 @@ body {
     line-height: 1.2vw;
   }
 
+  .MobileDownloadButton{
+    border-style: solid;
+    border-color: white;
+    border-radius: 2vw;
+    border-width: 1vw;
+    display: inline-block;
+    width: 60vw;
+
+    text-align: center;
+
+    vertical-align: middle;
+    line-height: 8vw;
+  }
+
   .DownloadLink{
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     font-size: 1.1vw;
     color: white;
     text-decoration: none;
+
+    text-align: center;
+  }
+
+  .MobileDownloadLink{
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    font-size: 8vw;
+    color: white;
+    text-decoration: none;
+
+    text-align: center;
   }
 
   .DownloadImg{
     margin-top: 1vw;
     width: 5vw;
     height: 5vw;
+  }
+
+  .MobileDownloadImg{
+    margin-top: 1vw;
+    width: 18vw;
+    height: 18vw;
+
+    text-align: center;
   }
 
   .InstagramFeed{

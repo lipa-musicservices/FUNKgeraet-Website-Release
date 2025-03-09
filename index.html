@@ -18,7 +18,8 @@
   <body onresize="ResizeFunction()" onload="ResizeFunction()">
     <div id="HeadBar"></div>
 
-    <div class="TitlePicture"><img width="100%" id="TitlePictureImg" src="Resources/TitlePic.png"></div>
+    <div class="TitlePicture"><img width="100%" id="DesktopTitlePictureImg" src="Resources/TitlePic.png"></div>
+    <div class="TitlePicture"><img width="100%" id="MobilTitlePictureImg" src="Resources/FG-Icon.png"></div>
 
     <div class="PageBackground">
 
@@ -82,6 +83,9 @@
 
 <script>
   function ResizeFunction() {
+
+    ActivateMobileView();
+
     if (window.innerWidth < 800) {
       $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
       $("#FootBar").load("FixedPages/FootBar.html"); 
@@ -103,4 +107,30 @@ window.addEventListener('load', adjustImageMargin);
 
 // Adjust on window resize
 window.addEventListener('resize', adjustImageMargin);
+</script>
+
+<script>
+  function ActivateMobileView()
+  {
+    if(window.innerWidth < 600)
+    {
+      document.querySelectorAll("[id^='Desktop']").forEach(element => {
+      element.style.display = "none";
+      });
+
+      document.querySelectorAll("[id^='Mobil']").forEach(element => {
+      element.style.display = "block";
+      });
+    }
+    else
+    {
+      document.querySelectorAll("[id^='Mobil']").forEach(element => {
+      element.style.display = "none";
+      });
+
+      document.querySelectorAll("[id^='Desktop']").forEach(element => {
+      element.style.display = "block";
+      });
+    }
+  }
 </script>

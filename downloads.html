@@ -34,10 +34,10 @@
 </script>
 
 
-<body onresize="ResizeFunction()" onload="ResizeFunction()">
+<body width="100%" onresize="ResizeFunction()" onload="ResizeFunction()">
   <div id="HeadBar"></div>
 
-  <div class="PageBackground">
+  <div class="PageBackground" width="100%">
 
     <div class="Spacer"></div>
     <table class="FrameTable">
@@ -55,7 +55,7 @@
     </table>
     <div class="Spacer"></div>
 
-    <table class="FrameTable">
+    <table id="DesktopDocuments" class="FrameTable">
       <tr>
         <th class="FrameSides" width="10%"></th>
         <th width="40%" class="FrameContentDownloadsTH">
@@ -81,9 +81,44 @@
         <th class="FrameSides" width="10%"></th>
       </tr>
     </table>
+    <table id="MobilDocuments" class="MobileFrameTable">
+      <tr>
+        <th class="FrameSides" width="10%"></th>
+        <th width="80%">
+          <div class="Headline3">Deutsch</div>
+          <div class="Spacer"></div>
+          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1kIVfOYKhS1zqVtHexRQy-rLiwB12xvU-/view?usp=sharing" target="_blank">Technical Rider</a></div>
+          <div class="Spacer"></div>
+          <div class="Spacer"></div>
+          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1okhsLO9n2EezFhwlBSHw5Kv1u-P0uPOx/view?usp=sharing" target="_blank">Pressetext</a></div>
+          <div class="Spacer"></div>
+          <div class="Spacer"></div>
+          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1etpl5pamFfQUrTBi8mKV98oas3Gie6qO/view?usp=sharing" target="_blank">EPK</a></div>
+        </th> 
+        <th class="FrameSides" width="10%"></th>
+      </tr>
+      <tr width="100%">
+        <th class="FrameSides" width="10%"></th>
+        <th width="80%" class="FrameContentDownloadsMobilTH">
+          <div class="Spacer"></div>
+          <div class="Spacer"></div>
+          <div class="Spacer"></div>
+          <div class="Spacer"></div>
+          <div class="Headline3">English</div>
+          <div class="Spacer"></div>
+          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1tWShPtKLO9LK4HD2Sxcbpl_WEo2B50I_/view?usp=sharing" target="_blank">Technical Rider</a></div>
+          <div class="Spacer"></div>
+          <div class="Spacer"></div>
+          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1oBA2yuZOS5B8_VJAsB3U8zP6lroShaAS/view?usp=sharing" target="_blank">Press-text</a></div>
+          <div class="Spacer"></div>
+          <div class="Spacer"></div>
+          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1COlc1zOkvS_C56KIOMBTGtBhjc7LwjYQ/view?usp=sharing" target="_blank">EPK</a></div></th>
+        <th class="FrameSides" width="10%"></th>
+      </tr>
+    </table>
 
     <div class="Spacer"></div>
-    <div class="Spacer"></div>
+
 
   </div>
 
@@ -97,6 +132,9 @@
 
 <script>
   function ResizeFunction() {
+
+    ActivateMobileView();
+
     if (window.innerWidth < 800) {
       $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
       $("#FootBar").load("FixedPages/FootBar.html"); 
@@ -104,6 +142,33 @@
     else {
       $("#HeadBar").load("FixedPages/HeadBar.html"); 
       $("#FootBar").load("FixedPages/FootBar.html"); 
+    }
+  }
+</script>
+
+
+<script>
+  function ActivateMobileView()
+  {
+    if(window.innerWidth < 600)
+    {
+      document.querySelectorAll("[id^='Desktop']").forEach(element => {
+      element.style.display = "none";
+      });
+
+      document.querySelectorAll("[id^='Mobil']").forEach(element => {
+      element.style.display = "table";
+      });
+    }
+    else
+    {
+      document.querySelectorAll("[id^='Mobil']").forEach(element => {
+      element.style.display = "none";
+      });
+
+      document.querySelectorAll("[id^='Desktop']").forEach(element => {
+      element.style.display = "table";
+      });
     }
   }
 </script>
