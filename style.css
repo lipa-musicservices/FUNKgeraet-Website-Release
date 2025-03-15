@@ -238,7 +238,7 @@ body {
   .OverlayText2 {
     color: white;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    font-size: 1.2vw;
+    font-size: 1.1vw;
     position: absolute; /* Absolut statt relativ */
     top: 25%; /* Einheitliche Höhe für alle Texte */
     left: 50%;
@@ -263,7 +263,7 @@ body {
 .OverlayText2Mobil {
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 2.8vw;
+  font-size: 2.5vw;
   position: relative; /* Absolut statt relativ */
   text-align: justify;
   vertical-align: top;
