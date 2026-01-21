@@ -1,69 +1,231 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FUNKger&aelig;t | Events</title>
-    <link rel="stylesheet" href="style.css"></link>
-    <link rel="stylesheet" href="styleHeadbar.css"></link>
-    <link rel="stylesheet" href="styleFootbar.css"></link>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUNKgeræt | Event-Band</title>
 
-    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
-    
-    <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
-  </head>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styleHeadbar.css" />
+  <link rel="stylesheet" href="styleFootbar.css" />
 
-  <body onresize="ResizeFunction()" onload="ResizeFunction()">
-    <div id="HeadBar"></div>
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
+</head>
 
-    <div class="PageBackground">
+<body>
+  <div id="HeadBar"></div>
 
-      <div class="Spacer"></div>
-      <table class="FrameTable">
-        <tr>
-          <th class="FrameSides" width="10%"></th>
-          <th class="FrameContent" width="80%">
-            <div class="Headline1">
-              Events
-            </div>
-          </th>
-          <th class="FrameSides" width="10%"></th>
-        </tr>
-    </table>
-    <div class="Spacer"></div>
-    <table class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="80%">
-          
-        <div class="Headline2">
-          Nächste Events:
+  <!-- INTRO -->
+  <section class="Intro">
+    <div class="Intro__inner">
+      <div class="Intro__badge">HOCHZEIT • GALA • FIRMENEVENT • PARTY</div>
+
+      <h1 class="Intro__title">FUNKgeræt als Event-Band</h1>
+
+      <p class="Intro__sub">
+        Ihr wollt <span class="Accent">Live-Musik, die funktioniert</span> – ohne Stress.
+        Stellt euch eure Band zusammen und bekommt schnell ein klares Angebot.
+      </p>
+
+      <div class="Intro__actions">
+        <a class="Btn Btn--accent" href="configurator.html">Band konfigurieren</a>
+        <a class="Btn Btn--ghost" href="contact.html">Direkt anfragen</a>
+        <a class="Btn Btn--ghost" href="media.html">Hörproben</a>
+      </div>
+
+      <!-- Mini-Trustline -->
+      <div class="MiniTrust">
+        <div class="Chip"><span class="Dot"></span>Planbar</div>
+        <div class="Chip"><span class="Dot"></span>Skalierbar</div>
+        <div class="Chip"><span class="Dot"></span>Professioneller Sound</div>
+      </div>
+    </div>
+  </section>
+
+  <main class="Page">
+
+    <!-- 3 USPs (kurz, knallt) -->
+    <section class="Section">
+      <div class="SectionHead">
+        <h2 class="SectionTitle">Warum das für euch passt</h2>
+        <div class="SectionHint">In 10 Sekunden verstanden</div>
+      </div>
+
+      <div class="Features">
+        <div class="Feature">
+          <div class="Feature__title">Für Empfang bis Party</div>
+          <div class="Feature__text">Wir starten passend zur Stimmung und können später tanzbar hochfahren.</div>
         </div>
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FBerlin&showPrint=0&showNav=0&showTitle=0&showDate=0&mode=AGENDA&showTabs=0&showCalendars=0&showTz=0&src=MDQyMTIwNTEyOGVjMDY0M2RhNGQ5MGMwMTI0YzcyNDg1Y2RlYzZhNWQ3NGIxMWE4YzgxZTRmNDI5MDE2NDZhMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23616161" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
-      <div class="Spacer"></div>
-      <div class="Spacer"></div>
 
+        <div class="Feature">
+          <div class="Feature__title">Besetzung nach Wunsch</div>
+          <div class="Feature__text">Klein & elegant oder groß & fett – ihr wählt, wir liefern.</div>
+        </div>
 
-    <div id="FootBar"></div>
+        <div class="Feature">
+          <div class="Feature__title">Kein Technik-Drama</div>
+          <div class="Feature__text">Klare Absprachen, sauberer Ablauf, Setup passend zur Location.</div>
+        </div>
+      </div>
+    </section>
 
-  </body>
+    <!-- CONFIGURATOR = STAR -->
+    <section class="Section">
+      <div class="SectionHead">
+        <h2 class="SectionTitle">Band-Konfigurator</h2>
+        <div class="SectionHint">Unser schnellster Weg zum Angebot</div>
+      </div>
+
+      <div class="ConfigCard">
+        <div class="ConfigCard__left">
+          <div class="ConfigCard__kicker">In 2 Minuten</div>
+          <div class="ConfigCard__title">Stellt eure Band zusammen</div>
+          <div class="ConfigCard__text">
+            Ihr klickt euch durch Besetzung & Optionen. Am Ende habt ihr eine klare Anfrage-Zusammenfassung,
+            die wir direkt bepreisen können.
+          </div>
+
+          <ul class="ConfigList">
+            <li>Besetzungsgröße wählen (kompakt bis groß)</li>
+            <li>Musik-Feeling festlegen (smooth → party)</li>
+            <li>Optionen auswählen (z.B. mehr Bläser etc.)</li>
+          </ul>
+        </div>
+
+        <div class="ConfigCard__right">
+          <a class="Btn Btn--accent ConfigCard__btn" href="configurator.html">Konfigurator öffnen</a>
+          <a class="Btn Btn--ghost ConfigCard__btn" href="contact.html">Ohne Konfigurator anfragen</a>
+
+          <div class="ConfigCard__note">
+            Tipp: Wenn ihr unsicher seid – einfach grob konfigurieren. Wir helfen beim Feinschliff.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SO LÄUFT’S (Steps, super scanbar) -->
+    <section class="Section">
+      <div class="SectionHead">
+        <h2 class="SectionTitle">So läuft’s ab</h2>
+        <div class="SectionHint">Einfach. Schnell. Klar.</div>
+      </div>
+
+      <div class="Steps">
+        <div class="Step">
+          <div class="Step__num">1</div>
+          <div class="Step__title">Konfigurieren</div>
+          <div class="Step__text">Besetzung & grobe Richtung auswählen.</div>
+        </div>
+        <div class="Step">
+          <div class="Step__num">2</div>
+          <div class="Step__title">Anfrage</div>
+          <div class="Step__text">Datum, Ort, Zeitrahmen – reicht.</div>
+        </div>
+        <div class="Step">
+          <div class="Step__num">3</div>
+          <div class="Step__title">Angebot</div>
+          <div class="Step__text">Klarer Preis + Ablaufempfehlung.</div>
+        </div>
+        <div class="Step">
+          <div class="Step__num">4</div>
+          <div class="Step__title">Showtime</div>
+          <div class="Step__text">Wir kümmern uns um Sound & Ablauf.</div>
+        </div>
+      </div>
+
+      <div class="SectionFooter">
+        <a class="TextLink" href="configurator.html">Jetzt konfigurieren →</a>
+      </div>
+    </section>
+
+    <!-- WAS IHR BEKOMMT (2 Spalten, kurz) -->
+    <section class="Section">
+      <div class="SectionHead">
+        <h2 class="SectionTitle">Was ihr bekommt</h2>
+        <div class="SectionHint">Ohne Details-Overkill</div>
+      </div>
+
+      <div class="ListCols">
+        <ul class="CleanList">
+          <li>Live-Band passend zu Location & Publikum</li>
+          <li>Stimmungsaufbau von elegant zu tanzbar</li>
+          <li>Professionelles Auftreten (Planbarkeit!)</li>
+          <li>Ein Ansprechpartner für alles</li>
+        </ul>
+
+        <ul class="CleanList">
+          <li>Abstimmung mit der Location möglich</li>
+          <li>Setup/Soundcheck sauber organisiert</li>
+          <li>Optional: Special Moment / Wunsch-Song</li>
+          <li>Optional: Moderation sparsam & stilvoll</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- FAQ (aufklappbar statt Textblock) -->
+    <section class="Section">
+      <div class="SectionHead">
+        <h2 class="SectionTitle">FAQ</h2>
+        <div class="SectionHint">Die 4 häufigsten Fragen</div>
+      </div>
+
+      <div class="FAQ">
+        <details class="FAQItem">
+          <summary>Wie laut seid ihr?</summary>
+          <div class="FAQItem__body">
+          </br>Wir passen uns an: Empfang/Dinner angenehm, später kann’s für Party hochgehen – ohne Schmerz.
+          </div>
+        </details>
+
+        <details class="FAQItem">
+          <summary>Brauchen wir Technik?</summary>
+          <div class="FAQItem__body">
+            </br>Kommt auf die Location an. Oft gibt’s schon was – sonst bringen wir passend zur Größe mit.
+          </div>
+        </details>
+
+        <details class="FAQItem">
+          <summary>Wie lange spielt ihr?</summary>
+          <div class="FAQItem__body">
+            </br>Das hängt vom Ablauf ab. Sagt uns grob: Empfang/Dinner/Party – wir empfehlen ein passendes Paket.
+          </div>
+        </details>
+
+        <details class="FAQItem">
+          <summary>Wie kurzfristig geht das?</summary>
+          <div class="FAQItem__body">
+            </br>Wenn der Termin frei ist, geht’s auch kurzfristig. Beliebte Daten sind schnell weg – lieber kurz anfragen.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CTA (nur 1, nicht doppelt) -->
+    <section class="Section Section--tight">
+      <div class="CTAline">
+        <div>
+          <div class="CTAline__title">Ready?</div>
+          <div class="CTAline__sub">Konfigurieren → Anfrage → Angebot. In einem Rutsch.</div>
+        </div>
+        <a class="Btn Btn--accent" href="configurator.html">Band konfigurieren</a>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="FootBar"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+
+  <!-- Nur Mini-CSS für neue Bausteine (kommt bei dir in style.css) -->
+  <style>
+
+  </style>
+
+</body>
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-  function ResizeFunction() {
-    if (window.innerWidth < 800) {
-      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-    else {
-      $("#HeadBar").load("FixedPages/HeadBar.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-  }
-</script>

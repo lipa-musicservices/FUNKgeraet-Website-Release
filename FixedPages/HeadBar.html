@@ -3,26 +3,84 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="Style.css"></link>
+    <title>FUNKgeræt</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
 
-<body>
-  <div class="MenuBar">
+  <body>
+    <header class="MenuBar">
+  <a href="index.html" class="MenuBar__logoLink" aria-label="Zur Startseite">
+    <img class="MenuBarLogo" src="Resources/Logo.png" alt="FUNKgeræt Logo" />
+  </a>
 
-    <a href="index.html"><img class="MenuBarLogo" src="Resources/Logo.png"/></a>
+  <!-- Burger Toggle (CSS-only) -->
+  <input id="navToggle" class="NavToggle" type="checkbox" aria-label="Menü öffnen/schließen" />
+  <label for="navToggle" class="BurgerBtn" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </label>
 
+  <!-- Desktop Nav -->
+  <nav class="MenuBar__nav" aria-label="Hauptmenü">
     <a class="MenuBarItem" href="index.html">HOME</a>
-    <a class="MenuBarItem" href="about.html">ÜBER UNS</a>
-    <a class="MenuBarItem" href="events.html">EVENTS</a>
-    <!-- <a class="MenuBarItem" href="configurator.html">KONFIGURATOR</a> -->
+
+    <a class="MenuBarItem" href="jazz.html">
+      FUNKGERÆT ALS JAZZ-BAND
+    </a>
+
+    <div class="MenuBarDrop">
+      <a class="MenuBarItem MenuBarDrop__trigger" href="events.html">
+        FUNKGERÆT ALS EVENT-BAND <span class="MenuBarChevron" aria-hidden="true">▾</span>
+      </a>
+      <div class="MenuBarDrop__panel">
+        <a class="DropItem" href="events.html">Überblick</a>
+        <a class="DropItem" href="configurator.html">Band-Konfigurator</a>
+        <a class="DropItem" href="repertoire.html">Unser Event-Repertoire</a>
+      </div>
+    </div>
+
     <a class="MenuBarItem" href="media.html">MEDIA</a>
-    <!-- <a class="MenuBarItem" href="news.html">NEWS</a> -->
     <a class="MenuBarItem" href="downloads.html">DOWNLOADS</a>
     <a class="MenuBarItem" href="contact.html">KONTAKT</a>
+  </nav>
 
-    <div class="SpacerHeadline"></div>
-
+  <div class="MenuBar__cta">
+    <a class="MenuBarBtn" href="contact.html">JETZT ANFRAGEN!</a>
   </div>
-</body>
-</html> 
+
+  <!-- Overlay (click closes menu) -->
+  <label for="navToggle" class="NavOverlay" aria-hidden="true"></label>
+
+  <!-- Mobile Drawer -->
+  <aside class="MobileNav" aria-label="Mobiles Menü">
+    <div class="MobileNav__top">
+      <div class="MobileNav__title">MENÜ</div>
+      <label for="navToggle" class="MobileNav__close" aria-label="Schließen">✕</label>
+    </div>
+
+    <div class="MobileNav__links">
+  <a class="MobileLink" href="index.html">HOME</a>
+
+  <a class="MobileLink" href="jazz.html">FUNKGERÆT ALS JAZZ-BAND</a>
+
+<details class="MobileGroup">
+  <summary>FUNKGERÆT ALS EVENT-BAND</summary>
+  <div class="MobileSub">
+    <a class="MobileSublink" href="events.html">Überblick</a>
+    <a class="MobileSublink" href="configurator.html">Band-Konfigurator</a>
+    <a class="MobileSublink" href="repertoire.html">Unser Event-Reperoire</a>
+  </div>
+</details>
+
+
+  <a class="MobileLink" href="media.html">MEDIA</a>
+  <a class="MobileLink" href="downloads.html">DOWNLOADS</a>
+  <a class="MobileLink" href="contact.html">KONTAKT</a>
+
+  <a class="MobileCTA" href="contact.html">JETZT ANFRAGEN!</a>
+</div>
+
+  </aside>
+</header>
+
+  </body>
+</html>

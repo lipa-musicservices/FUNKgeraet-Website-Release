@@ -1,84 +1,207 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FUNKger&aelig;t | Impressum</title>
-    <link rel="stylesheet" href="style.css"></link>
-    <link rel="stylesheet" href="styleHeadbar.css"></link>
-    <link rel="stylesheet" href="styleFootbar.css"></link>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FUNKgeræt | Impressum</title>
 
-    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
-    
-    <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
-  </head>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
+  <meta name="theme-color" content="#070a08" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
 
-  <body onresize="ResizeFunction()" onload="ResizeFunction()">
-    <div id="HeadBar"></div>
+  <style>
+    .LegalPage{
+      width:min(1100px, calc(100% - 40px));
+      margin:0 auto;
+      padding: 24px 0 70px;
+    }
 
-    <div class="PageBackground">
+    .LegalHero{
+      margin-top: 14px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      overflow:hidden;
+    }
+    .LegalHero__inner{ padding: 26px; }
+    @media (max-width: 900px){
+      .LegalHero__inner{ padding: 20px; }
+    }
 
-      <div class="Spacer"></div>
-      <table class="FrameTable">
-        <tr>
-          <th class="FrameSides" width="10%"></th>
-          <th class="FrameContent" width="80%">
-            <div class="Headline1">
-              Impressum
-            </div>
-          </th>
-          <th class="FrameSides" width="10%"></th>
-        </tr>
-    </table>
-    <div class="Spacer"></div>
-      <table class="FrameTable">
-        <tr>
-          <th class="FrameSides" width="10%"></th>
-          <th class="FrameContent" width="80%">
-            <div id="Impressum" class='StdText'></div>  
-          </th>
-          <th class="FrameSides" width="10%"></th>
-        </tr>
-      </table>
-    </div>
-    </div>
-    <div class="Spacer"></div>
-    <div class="Spacer"></div>
-    <div class="Spacer"></div>
+    .LegalBadge{
+      display:inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,255,0,.22);
+      background: rgba(0,255,0,.06);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .LegalTitle{
+      margin: 14px 0 6px;
+      font-size: clamp(26px, 3.2vw, 38px);
+      line-height: 1.1;
+      font-weight: 950;
+    }
+    .LegalSub{
+      margin:0;
+      opacity:.78;
+      line-height:1.5;
+      max-width: 70ch;
+    }
 
-    <div id="FootBar"></div>
+    .LegalCard{
+      margin-top: 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding: 18px;
+      overflow:hidden;
+    }
 
-  </body>
+    .LegalMetaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom: 12px;
+      align-items:center;
+    }
+    .LegalPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      font-size: 13px;
+      opacity: .95;
+      white-space: nowrap;
+    }
+
+    .LegalBody{
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: .92;
+    }
+    /* Text aus TXT -> Zeilenumbrüche, ggf. Überschriften */
+    .LegalBody b, .LegalBody strong{ font-weight: 950; }
+    .LegalBody a{
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-color: rgba(0,255,0,.55);
+      text-underline-offset: 3px;
+    }
+
+    .LegalStatus{
+      margin-top: 10px;
+      font-size: 13px;
+      opacity: .78;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="HeadBar"></div>
+
+  <main class="LegalPage">
+
+    <header class="LegalHero" aria-label="Impressum">
+      <div class="LegalHero__inner">
+        <div class="LegalBadge">LEGAL</div>
+        <h1 class="LegalTitle">Impressum</h1>
+        <p class="LegalSub">
+
+        </p>
+      </div>
+    </header>
+
+    <section class="LegalCard" aria-label="Impressum Inhalt">
+      <div class="LegalMetaRow" aria-label="Hinweise">
+        <span class="LegalPill" style="display: none;"></span>
+        <span class="LegalPill">Stand: <strong id="impStamp">–</strong></span>
+      </div>
+
+      <div id="Impressum" class="LegalBody">
+        Wird geladen…
+      </div>
+
+      <div id="impStatus" class="LegalStatus">—</div>
+    </section>
+
+  </main>
+
+  <div id="FootBar"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function loadBars(){
+      if (window.innerWidth < 800) $("#HeadBar").load("FixedPages/HeadBarCollapsed.html");
+      else $("#HeadBar").load("FixedPages/HeadBar.html");
+      $("#FootBar").load("FixedPages/FootBar.html");
+    }
+    window.addEventListener("load", loadBars);
+    window.addEventListener("resize", () => {
+      const isMobile = window.innerWidth < 800;
+      if (window.__fgWasMobile !== isMobile){
+        window.__fgWasMobile = isMobile;
+        loadBars();
+      }
+    });
+  </script>
+
+  <script>
+    // TXT laden (wie vorher) – nur sauberer und mit Fehleranzeige
+    const IMP_TXT = "Texts/Impressum.txt";
+    const impEl = document.getElementById("Impressum");
+    const impStatus = document.getElementById("impStatus");
+    const impStamp = document.getElementById("impStamp");
+
+    function escHtml(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
+    }
+
+    function setStatus(msg){ impStatus.textContent = msg; }
+
+    async function loadImpressum(){
+      try{
+        setStatus("Lade Text…");
+        const res = await fetch(IMP_TXT, { cache: "no-store" });
+        if(!res.ok) throw new Error("HTTP " + res.status);
+
+        const txt = await res.text();
+
+        // Plaintext -> safe HTML (escapen) + Zeilenumbrüche
+        const safe = escHtml(txt).split("\n").join("<br>");
+        impEl.innerHTML = safe;
+
+        // Stand-Datum = jetzt (oder du ersetzt es später per File timestamp)
+        const d = new Date();
+        impStamp.textContent = d.toLocaleDateString("de-DE", { year:"numeric", month:"2-digit", day:"2-digit" });
+
+        setStatus("");
+      }catch(err){
+        console.error(err);
+        impEl.textContent = "Konnte das Impressum gerade nicht laden.";
+        setStatus("❌ Fehler beim Laden: " + (err?.message || err));
+        impStamp.textContent = "—";
+      }
+    }
+
+    loadImpressum();
+  </script>
+</body>
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-  function ResizeFunction() {
-    if (window.innerWidth < 800) {
-      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-    else {
-      $("#HeadBar").load("FixedPages/HeadBar.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-  }
-</script>
-
-<script>
-  var txtFile1 = new XMLHttpRequest();
-    var allText1 = "";
-
-    txtFile1.onreadystatechange = function () {
-        if (txtFile1.readyState === XMLHttpRequest.DONE && txtFile1.status == 200) {
-          allText1 = txtFile1.responseText;
-          allText1 = allText1.split("\n").join("<br>");
-        }
-
-        document.getElementById('Impressum').innerHTML = allText1;
-    }
-    
-    txtFile1.open("GET", "Texts/Impressum.txt", true);
-    txtFile1.send(null);
-</script>

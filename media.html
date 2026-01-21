@@ -1,136 +1,610 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FUNKger&aelig;t | Media</title>
-    <link rel="stylesheet" href="style.css"></link>
-    <link rel="stylesheet" href="styleHeadbar.css"></link>
-    <link rel="stylesheet" href="styleFootbar.css"></link>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FUNKgeræt | Media</title>
 
-    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
-    
-    <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
-  </head>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
+  <meta name="theme-color" content="#070a08" />
 
-  <body onresize="ResizeFunction()" onload="ResizeFunction()">
-    <div id="HeadBar"></div>
+  <style>
+    /* =========================================
+       MEDIA – Instagram-Style Feed (local)
+       ========================================= */
 
-    <div class="PageBackground">
+    .MediaWrap{ padding-top: 8px; }
 
-      <div class="Spacer"></div>
-      <table class="FrameTable">
-        <tr>
-          <th class="FrameSides" width="10%"></th>
-          <th class="FrameContent" width="80%">
-            <div class="Headline1">
-              Media
-            </div>
-          </th>
-          <th class="FrameSides" width="10%"></th>
-        </tr>
-    </table>
-    <div class="Spacer"></div>
-    <table id="DesktopYoutubeTable" class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="26,667%">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/P-tPYoT-dcU?si=ukuKyJm8U0enc7E8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </th>
-        <th class="FrameContent" width="26,667%">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/TABp-h37SwA?si=6SudSHhxcupfkRhg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </th>
-        <th class="FrameContent" width="26,667%">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/YUcFTi7xwos?si=U9snJ-4UAspu-3sQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
-    <table id="MobilYoutubeTable" class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="80%">
-          <iframe width="100%" height="150" src="https://www.youtube.com/embed/P-tPYoT-dcU?si=ukuKyJm8U0enc7E8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="80%">
-          <iframe width="100%" height="150" src="https://www.youtube.com/embed/TABp-h37SwA?si=6SudSHhxcupfkRhg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="80%">
-          <iframe width="100%" height="150" src="https://www.youtube.com/embed/YUcFTi7xwos?si=U9snJ-4UAspu-3sQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
-    <table class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="80%">
-          <div class="Headline2">
-            Instagram:
-          </div>
-          <div class="InstagramFeed"><iframe src='https://widgets.sociablekit.com/instagram-feed/iframe/25511809' frameborder='0' width='100%' height='1000pt'></iframe></div>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-      </table>
-      <div class="Spacer"></div>
-      <div class="Spacer"></div>
+    /* Header Card */
+    .IGCard{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding: 16px;
+      overflow:hidden;
+      position: relative;
+    }
+
+    .IGTop{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+
+    .IGAvatar{
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.22);
+      overflow:hidden;
+      flex: 0 0 auto;
+    }
+    .IGAvatar img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    .IGTitleRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      align-items:baseline;
+    }
+    .IGName{
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: .01em;
+      line-height:1.1;
+    }
+    .IGUser{
+      opacity:.8;
+      font-size: 14px;
+    }
+
+    .IGStats{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 8px;
+      align-items:center;
+    }
+    .IGPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      font-size: 13px;
+      opacity: .95;
+      white-space: nowrap;
+    }
+
+    .IGActions{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .IGBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: inherit;
+      text-decoration:none;
+      cursor:pointer;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      font-weight: 800;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .IGBtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.24);
+      background: rgba(255,255,255,.06);
+    }
+    .IGBtn--accent{
+      border-color: rgba(0,255,0,.35);
+      background: rgba(0,255,0,.08);
+    }
+
+    @media (max-width: 860px){
+      .IGTop{ align-items:flex-start; }
+      .IGActions{ width: 100%; margin-left: 0; }
+    }
+
+    /* Feed grid */
+    .IGGrid{
+      display:grid;
+      gap:12px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 16px;
+    }
+    @media (max-width: 1050px){
+      .IGGrid{ grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 760px){
+      .IGGrid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    .IGItem{
+      position: relative;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      aspect-ratio: 1 / 1;
+      cursor:pointer;
+      transform: translateZ(0);
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .IGItem:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.05);
+    }
+
+    /* IGItem ist jetzt ein <a> – Link-Default entfernen */
+    a.IGItem{
+      display:block;
+      color: inherit;
+      text-decoration: none;
+    }
+    a.IGItem:visited{ color: inherit; }
+
+    /* Keyboard-Fokus sichtbar */
+    a.IGItem:focus-visible{
+      outline: 2px solid rgba(0,255,0,.55);
+      outline-offset: 3px;
+    }
+
+
+    .IGThumb{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    /* Overlay hover */
+    .IGHover{
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      gap:8px;
+      padding: 12px;
+      background: linear-gradient(to top, rgba(0,0,0,.72), rgba(0,0,0,.12), rgba(0,0,0,0));
+      opacity: 0;
+      transition: opacity 170ms ease;
+      pointer-events:none;
+    }
+    .IGItem:hover .IGHover{ opacity: 1; }
+
+    .IGBadgeRow{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .IGType{
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity:.9;
+    }
+    .IGDate{
+      font-size: 12px;
+      opacity:.75;
+      white-space:nowrap;
+    }
+    .IGCap{
+      font-size: 13px;
+      opacity:.9;
+      line-height:1.35;
+      display:-webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow:hidden;
+    }
+
+    /* Loading skeleton */
+    .SkeletonGrid .IGItem{
+      cursor: default;
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.08);
+      position:relative;
+    }
+    .SkeletonGrid .IGItem::after{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: linear-gradient(90deg,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,.06) 50%,
+        rgba(255,255,255,0) 100%);
+      transform: translateX(-30%);
+      animation: shimmer 1.15s linear infinite;
+    }
+    @keyframes shimmer{
+      from{ transform: translateX(-35%); }
+      to{ transform: translateX(35%); }
+    }
+
+    .MediaNote{
+      margin-top: 14px;
+      opacity:.78;
+      font-size: 13px;
+      line-height:1.45;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .IGItem, .IGBtn, .IGHover{ transition:none !important; }
+      .SkeletonGrid .IGItem::after{ animation:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ Headbar -->
+  <div id="HeadBar"></div>
+
+  <!-- HERO (wie Repertoire) -->
+  <header class="RepHero" aria-label="Media">
+    <div class="RepHero__inner">
+      <div class="RepHero__badge">SOCIALS • MEDIA</div>
+      <h1 class="RepHero__title">Media</h1>
+      <p class="RepHero__sub">
+        Live-Momente, Clips & Highlights
+      </p>
+
+      <div class="RepHero__chips" aria-label="Hinweise">
+        <div class="Chip"><span class="Dot"></span> Instagram: <strong id="igFollower">–</strong> Follower</div>
+        <div class="Chip"><span class="Dot"></span> Posts: <strong id="igPosts">–</strong></div>
+        <!-- <div class="Chip"><span class="Dot"></span> Klick einen Post → Original auf Instagram</div> -->
+      </div>
     </div>
-    
-    <div id="FootBar"></div>
+  </header>
 
-  </body>
+  <main class="RepPage MediaWrap">
+    <section class="RepShelf" aria-label="Instagram Feed">
+
+      <!-- YouTube -->
+<div class="RepNote" style="margin-top:0;">
+  <div class="RepNote__title">YouTube</div>
+  <div class="RepNote__text">
+    Drei schnelle Eindrücke – live, tight, FUNKgeræt.
+  </div>
+</div>
+
+    <div class="YTGrid" aria-label="YouTube Videos">
+      <div class="YTCard">
+        <iframe class="YTFrame"
+          src="https://www.youtube.com/embed/P-tPYoT-dcU?rel=0&modestbranding=1"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+        <div class="YTMeta">
+          <div>
+            <div class="YTTitle">Live Clip 1</div>
+            <div class="YTSub">FUNKgeræt – Performance</div>
+          </div>
+          <a class="YTLink" href="https://www.youtube.com/watch?v=P-tPYoT-dcU" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+
+      <div class="YTCard">
+        <iframe class="YTFrame"
+          src="https://www.youtube.com/embed/TABp-h37SwA?rel=0&modestbranding=1"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+        <div class="YTMeta">
+          <div>
+            <div class="YTTitle">Live Clip 2</div>
+            <div class="YTSub">FUNKgeræt – Performance</div>
+          </div>
+          <a class="YTLink" href="https://www.youtube.com/watch?v=TABp-h37SwA" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+
+      <div class="YTCard">
+        <iframe class="YTFrame"
+          src="https://www.youtube.com/embed/YUcFTi7xwos?rel=0&modestbranding=1"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+        <div class="YTMeta">
+          <div>
+            <div class="YTTitle">Live Clip 3</div>
+            <div class="YTSub">FUNKgeræt – Performance</div>
+          </div>
+          <a class="YTLink" href="https://www.youtube.com/watch?v=YUcFTi7xwos" target="_blank" rel="noopener">Open</a>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="RepNote">
+        <div class="RepNote__title">Instagram Feed</div>
+        <div class="RepNote__text">
+          Unser Social-Stream im Website-Look. Lädt schnell, sieht nach Instagram aus – ohne dass wir uns ein Drittanbieter-Widget reinbraten.
+        </div>
+      </div>
+
+      <!-- IG Header Card -->
+      <div class="IGCard" aria-label="Instagram Profil">
+        <div class="IGTop">
+          <div class="IGAvatar" aria-hidden="true">
+            <img id="igAvatar" alt="" />
+          </div>
+
+          <div style="min-width: 220px;">
+            <div class="IGTitleRow">
+              <div class="IGName" id="igName">—</div>
+              <div class="IGUser" id="igUser">@—</div>
+            </div>
+
+            <div class="IGStats" aria-label="Instagram Stats">
+              <span class="IGPill">Follower: <strong id="igFollower2">–</strong></span>
+              <span class="IGPill">Beiträge: <strong id="igPosts2">–</strong></span>
+            </div>
+          </div>
+
+          <div class="IGActions">
+            <a class="IGBtn IGBtn--accent" id="igOpen" target="_blank" rel="noopener">Instagram</br>öffnen</a>
+            <button class="IGBtn" id="igReload" type="button">Neu laden</button>
+          </div>
+        </div>
+
+        <div class="MediaNote" id="igStatus">
+          Lädt…
+        </div>
+      </div>
+
+      <!-- Feed Grid -->
+      <div id="igGrid" class="IGGrid SkeletonGrid" aria-label="Instagram Posts"></div>
+
+    </section>
+  </main>
+
+  <!-- ✅ Footbar -->
+  <div id="FootBar"></div>
+
+  <!-- ✅ jQuery load für HeadBar/FootBar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+
+  <script>
+    // =========================================================
+    // FUNKgeræt – Media (IG-like feed)
+    // Data source: später Google Apps Script JSON Endpoint
+    // =========================================================
+
+    // ✅ Später hier rein: URL zu deinem Apps Script Web App (doGet)
+    // Erwartetes JSON Format (Beispiel unten bei TEST_DATA)
+    const IG_ENDPOINT = "https://script.google.com/macros/s/AKfycby92Pk7oZJmWAHKihUzhOWSu6Lza6K6EBe5nwyzawqe-gS5-JN9pxEdZmqjEsvct8Ko2A/exec"; // z.B. "https://script.google.com/macros/s/AKfycb.../exec"
+
+    // Fallback: Testdaten (damit die Seite sofort läuft)
+    const TEST_DATA = {
+      profile: {
+        username: "funk_geraet",
+        followers_count: 189,
+        media_count: 72,
+        name: "FUNKgeræt",
+        profile_picture_url: "https://scontent-fra3-1.xx.fbcdn.net/v/t51.2885-15/425397786_924808449270956_3125316293838786933_n.jpg"
+      },
+      posts: [
+        {
+          id: "1",
+          media_type: "IMAGE",
+          media_url: "https://images.unsplash.com/photo-1520975958225-0c0a5b243f95?auto=format&fit=crop&w=1200&q=70",
+          permalink: "https://instagram.com/funk_geraet",
+          caption: "Live vibes ✨",
+          timestamp: "2026-01-01T20:00:00+0000"
+        },
+        {
+          id: "2",
+          media_type: "VIDEO",
+          thumbnail_url: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1200&q=70",
+          media_url: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1200&q=70",
+          permalink: "https://instagram.com/funk_geraet",
+          caption: "Clip vom Gig – Publikum war komplett dabei.",
+          timestamp: "2025-12-20T21:15:00+0000"
+        }
+      ]
+    };
+
+    const $ = (sel) => document.querySelector(sel);
+
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#39;");
+    }
+
+    function fmtDate(iso){
+      try{
+        const d = new Date(iso);
+        return d.toLocaleDateString("de-DE", { year:"numeric", month:"2-digit", day:"2-digit" });
+      }catch(e){
+        return "";
+      }
+    }
+
+    function postTypeLabel(t){
+      const x = String(t||"").toUpperCase();
+      if (x === "VIDEO" || x === "REELS") return "Video";
+      if (x === "CAROUSEL_ALBUM") return "Carousel";
+      return "Foto";
+    }
+
+    function setStatus(msg){
+      $("#igStatus").textContent = msg;
+    }
+
+    function setHeroChips(p){
+      $("#igFollower").textContent = String(p.followers_count ?? "–");
+      $("#igPosts").textContent = String(p.media_count ?? "–");
+    }
+
+    function renderProfile(p){
+      $("#igName").textContent = p.name || "—";
+      $("#igUser").textContent = p.username ? ("@" + p.username) : "@—";
+      $("#igFollower2").textContent = String(p.followers_count ?? "–");
+      $("#igPosts2").textContent = String(p.media_count ?? "–");
+
+      const avatar = $("#igAvatar");
+      avatar.src = p.profile_picture_url || "";
+      avatar.alt = p.username ? ("@" + p.username) : "";
+
+      const link = $("#igOpen");
+      link.href = p.username ? ("https://www.instagram.com/" + p.username + "/") : "https://www.instagram.com/";
+    }
+
+    function renderSkeleton(n=8){
+      const grid = $("#igGrid");
+      grid.classList.add("SkeletonGrid");
+      grid.innerHTML = "";
+      for(let i=0;i<n;i++){
+        const div = document.createElement("div");
+        div.className = "IGItem";
+        grid.appendChild(div);
+      }
+    }
+
+    function normalizeIgUrl(u, usernameFallback){
+      const s = String(u || "").trim();
+      const profileUrl = usernameFallback ? `https://www.instagram.com/${usernameFallback}/` : "https://www.instagram.com/";
+
+      if(!s) return profileUrl;
+
+      // Wenn nur "www..." kommt
+      const candidate = s.startsWith("www.") ? ("https://" + s) : s;
+
+      try{
+        const url = new URL(candidate);
+
+        // Nur Instagram erlauben (damit du nicht "irgendwo anders" landest)
+        const host = url.hostname.replace(/^www\./, "");
+        if(host !== "instagram.com") return profileUrl;
+
+        return url.toString();
+      }catch(e){
+        return profileUrl;
+      }
+    }
+
+    function renderPosts(posts, username){
+      const grid = $("#igGrid");
+      grid.classList.remove("SkeletonGrid");
+      grid.innerHTML = "";
+
+      // Debug: true setzen wenn du checken willst
+      const DEBUG_LINKS = false;
+
+      for(const post of posts){
+        const type = postTypeLabel(post.media_type);
+        const date = fmtDate(post.timestamp);
+
+        const isVideo = String(post.media_type || "").toUpperCase() === "VIDEO";
+        const thumb = isVideo ? (post.thumbnail_url || post.media_url) : post.media_url;
+
+        const url = normalizeIgUrl(post.permalink.replace("reel","p"), username);
+
+        if (DEBUG_LINKS) console.log("IG Render:", post.id, post.permalink, "->", url);
+
+        const a = document.createElement("a");
+        a.className = "IGItem";
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.setAttribute("aria-label", "Instagram Post öffnen");
+
+        a.innerHTML = `
+          <img class="IGThumb" loading="lazy" src="${esc(thumb)}" alt="${esc(post.caption || "")}">
+          <div class="IGHover">
+            <div class="IGBadgeRow">
+              <div class="IGType">${esc(type)}</div>
+              <div class="IGDate">${esc(date)}</div>
+            </div>
+            <div class="IGCap">${esc(post.caption || "")}</div>
+          </div>
+        `;
+
+        grid.appendChild(a);
+      }
+    }
+
+
+
+    async function loadFromEndpoint(){
+      if(!IG_ENDPOINT) return null;
+      const res = await fetch(IG_ENDPOINT, { cache: "no-store" });
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      return await res.json();
+    }
+
+    async function init(){
+      setStatus("Lädt…");
+      renderSkeleton(8);
+
+      try{
+        const data = await (IG_ENDPOINT ? loadFromEndpoint() : Promise.resolve(TEST_DATA));
+        if(!data || !data.profile) throw new Error("Ungueltige Daten");
+
+        renderProfile(data.profile);
+        setHeroChips(data.profile);
+
+        const posts = Array.isArray(data.posts) ? data.posts : [];
+        if(!posts.length){
+          renderPosts([]);
+
+          setStatus("Keine Posts gefunden (oder Endpoint liefert noch nichts).");
+          return;
+        }
+
+        renderPosts(posts, data.profile?.username);
+
+        setStatus("Aktualisiert. Klick einen Post für das Original auf Instagram.");
+      }catch(err){
+        console.error(err);
+        setStatus("Konnte den Feed gerade nicht laden. (Endpoint/Token/Script noch nicht fertig?)");
+        renderProfile(TEST_DATA.profile);
+        setHeroChips(TEST_DATA.profile);
+        renderPosts(TEST_DATA.posts, TEST_DATA.profile?.username);
+
+      }
+    }
+
+    $("#igReload").addEventListener("click", () => init());
+
+    init();
+  </script>
+</body>
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-  function ResizeFunction() {
-
-    ActivateMobileView();
-
-    if (window.innerWidth < 800) {
-      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-    else {
-      $("#HeadBar").load("FixedPages/HeadBar.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-  }
-</script>
-
-
-<script>
-  function ActivateMobileView()
-  {
-    if(window.innerWidth < 600)
-    {
-      document.querySelectorAll("[id^='Desktop']").forEach(element => {
-      element.style.display = "none";
-      });
-
-      document.querySelectorAll("[id^='Mobil']").forEach(element => {
-      element.style.display = "table";
-      });
-    }
-    else
-    {
-      document.querySelectorAll("[id^='Mobil']").forEach(element => {
-      element.style.display = "none";
-      });
-
-      document.querySelectorAll("[id^='Desktop']").forEach(element => {
-      element.style.display = "table";
-      });
-    }
-  }
-</script>

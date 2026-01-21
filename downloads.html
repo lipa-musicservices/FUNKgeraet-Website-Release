@@ -1,175 +1,137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FUNKger&aelig;t | Downloads</title>
-  <link rel="stylesheet" href="style.css">
-  </link>
-  <link rel="stylesheet" href="styleHeadbar.css">
-  </link>
-  <link rel="stylesheet" href="styleFootbar.css">
-  </link>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FUNKgeræt | Downloads</title>
 
-  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
-  
-  <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="theme-color" content="#070a08" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
 </head>
 
-<script>
-  function ResizeFunction() {
-    if (window.innerWidth < 600) {
-      document.getElementById('ImgCol').style.width = "0";
-      document.getElementById('TxtCol').style.width = (window.innerWidth * 0.8) + "px";
-      document.getElementById('AboutPictureImg').style.borderWidth = "0";
-    }
-    else {
-      document.getElementById('ImgCol').style.width = (window.innerWidth * 0.3) + "px";
-      document.getElementById('TxtCol').style.width = (window.innerWidth * 0.5) + "px";
-
-      document.getElementById('AboutPictureImg').style.borderWidth = "2px"
-    }
-  }
-</script>
-
-
-<body width="100%" onresize="ResizeFunction()" onload="ResizeFunction()">
+<body>
+  <!-- Headbar -->
   <div id="HeadBar"></div>
 
-  <div class="PageBackground" width="100%">
+  <main class="DLPage">
+    <!-- HERO -->
+    <header class="DLHero" aria-label="Downloads">
+      <div class="DLHero__inner">
+        <div class="DLBadge">DOWNLOADS</div>
+        <h1 class="DLTitle">Dokumente für Veranstalter</h1>
+        <p class="DLSub">
+          Technical Rider, Pressetext und EPK
+        </p>
+      </div>
+    </header>
 
-    <div class="Spacer"></div>
-    <table class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContentDownloads" width="80%">
-          <div class="Headline1">
-            Downloads
-          </div>
-          <div class="Spacer"></div>
-          <div class="Headline2">Dokumente für Veranstalter</div>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
-    <div class="Spacer"></div>
+    <!-- CONTENT -->
+    <section class="DLGrid" aria-label="Download Bereiche">
 
-    <table id="DesktopDocuments" class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th width="40%" class="FrameContentDownloadsTH">
-          <div class="Headline3">Deutsch</div>
-          <div class="Spacer"></div>
-          <div class="DownloadButton"><a class="DownloadLink" href="https://drive.google.com/file/d/1kIVfOYKhS1zqVtHexRQy-rLiwB12xvU-/view?usp=sharing" target="_blank"><img class="DownloadImg" src="Resources/External/PDF.png"></br>Technical Rider</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="DownloadButton"><a class="DownloadLink" href="https://drive.google.com/file/d/1okhsLO9n2EezFhwlBSHw5Kv1u-P0uPOx/view?usp=sharing" target="_blank"><img class="DownloadImg" src="Resources/External/PDF.png"></br>Pressetext</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="DownloadButton"><a class="DownloadLink" href="https://drive.google.com/file/d/1etpl5pamFfQUrTBi8mKV98oas3Gie6qO/view?usp=sharing" target="_blank"><img class="DownloadImg" src="Resources/External/PDF.png"></br>EPK</a></div>
-        </th> 
-        <th width="40%"><div class="Headline3">English</div>
-          <div class="Spacer"></div>
-          <div class="DownloadButton"><a class="DownloadLink" href="https://drive.google.com/file/d/1tWShPtKLO9LK4HD2Sxcbpl_WEo2B50I_/view?usp=sharing" target="_blank"><img class="DownloadImg" src="Resources/External/PDF.png"></br>Technical Rider</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="DownloadButton"><a class="DownloadLink" href="https://drive.google.com/file/d/1oBA2yuZOS5B8_VJAsB3U8zP6lroShaAS/view?usp=sharing" target="_blank"><img class="DownloadImg" src="Resources/External/PDF.png"></br>Press-text</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="DownloadButton"><a class="DownloadLink" href="https://drive.google.com/file/d/1COlc1zOkvS_C56KIOMBTGtBhjc7LwjYQ/view?usp=sharing" target="_blank"><img class="DownloadImg" src="Resources/External/PDF.png"></br>EPK</a></div></th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
-    <table id="MobilDocuments" class="MobileFrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th width="80%">
-          <div class="Headline3">Deutsch</div>
-          <div class="Spacer"></div>
-          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1kIVfOYKhS1zqVtHexRQy-rLiwB12xvU-/view?usp=sharing" target="_blank">Technical Rider</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1okhsLO9n2EezFhwlBSHw5Kv1u-P0uPOx/view?usp=sharing" target="_blank">Pressetext</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1etpl5pamFfQUrTBi8mKV98oas3Gie6qO/view?usp=sharing" target="_blank">EPK</a></div>
-        </th> 
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-      <tr width="100%">
-        <th class="FrameSides" width="10%"></th>
-        <th width="80%" class="FrameContentDownloadsMobilTH">
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="Headline3">English</div>
-          <div class="Spacer"></div>
-          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1tWShPtKLO9LK4HD2Sxcbpl_WEo2B50I_/view?usp=sharing" target="_blank">Technical Rider</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1oBA2yuZOS5B8_VJAsB3U8zP6lroShaAS/view?usp=sharing" target="_blank">Press-text</a></div>
-          <div class="Spacer"></div>
-          <div class="Spacer"></div>
-          <div class="MobileDownloadButton"><a class="MobileDownloadLink" href="https://drive.google.com/file/d/1COlc1zOkvS_C56KIOMBTGtBhjc7LwjYQ/view?usp=sharing" target="_blank">EPK</a></div>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
+      <!-- DE -->
+      <article class="DLCard" aria-label="Deutsch">
+        <div class="DLCard__top">
+          <div class="DLLang">Deutsch</div>
+          <div class="DLHint">PDF · Google Drive</div>
+        </div>
 
-    <div class="Spacer"></div>
+        <div class="DLList">
+          <a class="DLBtn" href="https://drive.google.com/file/d/1kIVfOYKhS1zqVtHexRQy-rLiwB12xvU-/view?usp=sharing" target="_blank" rel="noopener">
+            <img class="DLIcon" src="Resources/External/PDF.png" alt="PDF" />
+            <span class="DLBtn__text">
+              <span class="DLBtn__title">Technical Rider</span>
+              <span class="DLBtn__sub">Stage · Input · Tech</span>
+            </span>
+          </a>
 
+          <a class="DLBtn" href="https://drive.google.com/file/d/1okhsLO9n2EezFhwlBSHw5Kv1u-P0uPOx/view?usp=sharing" target="_blank" rel="noopener">
+            <img class="DLIcon" src="Resources/External/PDF.png" alt="PDF" />
+            <span class="DLBtn__text">
+              <span class="DLBtn__title">Pressetext</span>
+              <span class="DLBtn__sub">Kurzbeschreibung · Bio</span>
+            </span>
+          </a>
 
-  </div>
+          <a class="DLBtn" href="https://drive.google.com/file/d/1etpl5pamFfQUrTBi8mKV98oas3Gie6qO/view?usp=sharing" target="_blank" rel="noopener">
+            <img class="DLIcon" src="Resources/External/PDF.png" alt="PDF" />
+            <span class="DLBtn__text">
+              <span class="DLBtn__title">EPK</span>
+              <span class="DLBtn__sub">Fotos · Links · Infos</span>
+            </span>
+          </a>
+        </div>
+      </article>
 
+      <!-- EN -->
+      <article class="DLCard" aria-label="English">
+        <div class="DLCard__top">
+          <div class="DLLang">English</div>
+          <div class="DLHint">PDF · Google Drive</div>
+        </div>
+
+        <div class="DLList">
+          <a class="DLBtn" href="https://drive.google.com/file/d/1tWShPtKLO9LK4HD2Sxcbpl_WEo2B50I_/view?usp=sharing" target="_blank" rel="noopener">
+            <img class="DLIcon" src="Resources/External/PDF.png" alt="PDF" />
+            <span class="DLBtn__text">
+              <span class="DLBtn__title">Technical Rider</span>
+              <span class="DLBtn__sub">Stage · Input · Tech</span>
+            </span>
+          </a>
+
+          <a class="DLBtn" href="https://drive.google.com/file/d/1oBA2yuZOS5B8_VJAsB3U8zP6lroShaAS/view?usp=sharing" target="_blank" rel="noopener">
+            <img class="DLIcon" src="Resources/External/PDF.png" alt="PDF" display:block/>
+            <span class="DLBtn__text">
+              <span class="DLBtn__title">Press Text</span>
+              <span class="DLBtn__sub">Short bio · Description</span>
+            </span>
+          </a>
+
+          <a class="DLBtn" href="https://drive.google.com/file/d/1COlc1zOkvS_C56KIOMBTGtBhjc7LwjYQ/view?usp=sharing" target="_blank" rel="noopener">
+            <img class="DLIcon" src="Resources/External/PDF.png" alt="PDF" />
+            <span class="DLBtn__text">
+              <span class="DLBtn__title">EPK</span>
+              <span class="DLBtn__sub">Photos · Links · Info</span>
+            </span>
+          </a>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="DLNote" aria-label="Hinweis">
+      <div class="DLNote__title">Hinweis</div>
+      <div class="DLNote__text">
+        Falls Sie zusätzlich noch Logos, Stageplot-Varianten oder Social-Kit brauchen, kontaktieren Sie uns gern jederzeit!
+      </div>
+    </section>
+  </main>
+
+  <!-- Footbar -->
   <div id="FootBar"></div>
 
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function loadBars(){
+      if (window.innerWidth < 800) {
+        $("#HeadBar").load("FixedPages/HeadBarCollapsed.html");
+      } else {
+        $("#HeadBar").load("FixedPages/HeadBar.html");
+      }
+      $("#FootBar").load("FixedPages/FootBar.html");
+    }
+
+    window.addEventListener("load", loadBars);
+    window.addEventListener("resize", () => {
+      // nur neu laden, wenn wir die Schwelle wirklich überqueren
+      const isMobile = window.innerWidth < 800;
+      if (window.__fgWasMobile !== isMobile){
+        window.__fgWasMobile = isMobile;
+        loadBars();
+      }
+    });
+  </script>
 </body>
-
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-  function ResizeFunction() {
-
-    ActivateMobileView();
-
-    if (window.innerWidth < 800) {
-      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-    else {
-      $("#HeadBar").load("FixedPages/HeadBar.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-  }
-</script>
-
-
-<script>
-  function ActivateMobileView()
-  {
-    if(window.innerWidth < 600)
-    {
-      document.querySelectorAll("[id^='Desktop']").forEach(element => {
-      element.style.display = "none";
-      });
-
-      document.querySelectorAll("[id^='Mobil']").forEach(element => {
-      element.style.display = "table";
-      });
-    }
-    else
-    {
-      document.querySelectorAll("[id^='Mobil']").forEach(element => {
-      element.style.display = "none";
-      });
-
-      document.querySelectorAll("[id^='Desktop']").forEach(element => {
-      element.style.display = "table";
-      });
-    }
-  }
-</script>

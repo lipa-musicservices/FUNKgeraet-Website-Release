@@ -1,73 +1,833 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FUNKger&aelig;t | About</title>
-  <link rel="stylesheet" href="style.css">
-  </link>
-  <link rel="stylesheet" href="styleHeadbar.css">
-  </link>
-  <link rel="stylesheet" href="styleFootbar.css">
-  </link>
+  <title>FUNKgeræt | Band-Konfigurator</title>
 
-  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
-  
-  <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- OPTIONAL, falls du diese Dateien nutzt wie auf anderen Seiten -->
+  <!-- <link rel="stylesheet" href="styleHeadbar.css" /> -->
+  <!-- <link rel="stylesheet" href="styleFootbar.css" /> -->
 </head>
 
-<body onresize="ResizeFunction()" onload="ResizeFunction()">
+<body>
+
+  <!-- ✅ Headbar wie auf anderer Seite -->
   <div id="HeadBar"></div>
 
-  <div class="PageBackground">
+  <!-- HERO -->
+  <section class="CfgHero" aria-label="Band-Konfigurator">
+    <div class="CfgHero__inner">
+      <div class="CfgHero__badge">BAND-KONFIGURATOR</div>
+      <h1 class="CfgHero__title">Stell dir deine Besetzung zusammen</h1>
+      <p class="CfgHero__sub">
+        Klick die Instrumente an – wir berechnen daraus den
+        <span class="Accent">Vibe</span> und einen Preisrahmen.
+      </p>
 
-    <div class="Spacer"></div>
-    <table class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="80%">
-          <div class="Headline1">
-            Konfigurier die Band für dein Event!
-          </div>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
-    <table class="FrameTable">
-      <tr>
-        <th class="FrameSides" width="10%"></th>
-        <th class="FrameContent" width="80%">
-          <div class="ConfiguratorWindow">
-              
-          </div>
-        </th>
-        <th class="FrameSides" width="10%"></th>
-      </tr>
-    </table>
-    
-    <div class="Spacer"></div>
-    <div class="Spacer"></div>
-  </div>
-  </div>
+      <div class="CfgHero__actions">
+        <a class="Btn Btn--accent" href="#cfg">Jetzt konfigurieren</a>
+        <a class="Btn Btn--ghost" href="contact.html">Direkt anfragen</a>
+      </div>
+    </div>
+  </section>
 
+  <main class="Page" id="cfg">
+    <section class="Section">
+      <div class="SectionHead">
+        <h2 class="SectionTitle">Band-Konfigurator</h2>
+        <div class="SectionHint"></div>
+      </div>
+
+      <div class="CfgLayout">
+        <!-- LEFT -->
+        <div class="CfgLeft">
+
+          <!-- Spielzeit + PLZ -->
+          <div class="CfgBlock">
+            <div class="CfgBlock__head">
+              <div class="CfgBlock__title">1) Spielzeit</div>
+              <div class="CfgBlock__hint">wir planen Sets & Energie passend</div>
+            </div>
+
+            <div class="CfgPlaytime CfgPlaytime--premium">
+              <div class="CfgPT__grid">
+
+                <!-- Slider Card -->
+                <div class="CfgPT__card">
+                  <div class="CfgPT__top">
+                    <div class="CfgPT__label">Spielzeit</div>
+                    <div class="CfgPT__pill">
+                      <span id="playtimeVal">90</span><span class="CfgPT__pillUnit">min</span>
+                    </div>
+                  </div>
+
+                  <input id="playtime" class="CfgSlider" type="range"
+                         min="60" max="360" step="15" value="90" />
+
+                  <div class="CfgPT__bottom">
+                    <div class="CfgPT__hint">60–360 min</div>
+                    <div class="CfgPT__micro">Wir planen Sets & Energie passend</div>
+                  </div>
+                </div>
+
+                <!-- PLZ Card -->
+                <div class="CfgPT__card">
+                  <div class="CfgPT__top">
+                    <div class="CfgPT__label">Ort</div>
+                    <div class="CfgPT__chip">für Fahrtkosten & Verfügbarkeit</div>
+                  </div>
+
+                  <div class="CfgZip">
+                    <span class="CfgZip__icon">⌁</span>
+                    <input id="cfgZip" class="CfgZip__input" type="text" inputmode="numeric"
+                           maxlength="5" placeholder="z.B. 70173" />
+                  </div>
+
+                  <div class="CfgPT__bottom">
+                    <div class="CfgPT__hint">Optional – du kannst’s auch später angeben</div>
+                  </div>
+                </div>
+
+                <!-- DATE Card -->
+                <div class="CfgPT__card">
+                  <div class="CfgPT__top">
+                    <div class="CfgPT__label">Event-Datum</div>
+                    <div class="CfgPT__chip">Wunschdatum</div>
+                  </div>
+
+                  <div class="CfgZip">
+                    <span class="CfgZip__icon">📅</span>
+                    <input id="cfgDate" class="CfgZip__input" type="date" />
+                  </div>
+
+                  <div class="CfgPT__bottom">
+                    <div class="CfgPT__hint">Optional – hilft bei Verfügbarkeit</div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Instrumente -->
+          <div class="CfgBlock">
+            <div class="CfgBlock__head">
+              <div class="CfgBlock__title">2) Besetzung</div>
+              <div class="CfgBlock__hint">anklicken</div>
+            </div>
+
+            <div class="CfgGroups" aria-label="Instrumente auswählen">
+
+              <!-- RHYTHMUSGRUPPE -->
+              <div class="CfgGroup">
+                <div class="CfgGroup__head">
+                  <div class="CfgGroup__title">Rhythmusgruppe</div>
+                  <div class="CfgGroup__hint">Groove & Fundament</div>
+                </div>
+
+                <div class="CfgGrid">
+                  <button class="CfgCard" type="button" data-inst="drums" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/1.png" alt="Drums" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Drums</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Groove & Drive</div>
+                  </button>
+
+                  <button class="CfgCard" type="button" data-inst="bass" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/2.png" alt="Bass" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Bass</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Fundament & Tanz</div>
+                  </button>
+
+                  <!-- Keys FIX -->
+                  <button class="CfgCard is-locked is-on" type="button" data-inst="keys" aria-pressed="true">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/3.png" alt="Keys" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Keys</div>
+                      <div class="CfgCard__tag">Fix</div>
+                    </div>
+                    <div class="CfgCard__desc">Harmonie & Fläche</div>
+                  </button>
+
+                  <button class="CfgCard" type="button" data-inst="guitar" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/4.png" alt="Gitarre" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Gitarre</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Riffs & Energie</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- HORNS -->
+              <div class="CfgGroup">
+                <div class="CfgGroup__head">
+                  <div class="CfgGroup__title">Horns</div>
+                  <div class="CfgGroup__hint">Hooks & Punch</div>
+                </div>
+
+                <div class="CfgGrid">
+                  <button class="CfgCard" type="button" data-inst="sax" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/8.png" alt="Saxophon" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Sax</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Hooks & Soli</div>
+                  </button>
+
+                  <button class="CfgCard" type="button" data-inst="trumpet" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/9.png" alt="Trompete" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Trompete</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Glanz & Punch</div>
+                  </button>
+
+                  <button class="CfgCard" type="button" data-inst="trombone" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/10.png" alt="Posaune" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Posaune</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Fett & Tief</div>
+                  </button>
+                </div>
+              </div>
+
+              <!-- GESANG -->
+              <div class="CfgGroup">
+                <div class="CfgGroup__head">
+                  <div class="CfgGroup__title">Gesang</div>
+                  <div class="CfgGroup__hint">Front & Mitgehen</div>
+                </div>
+
+                <div class="CfgGrid">
+                  <button class="CfgCard" type="button" data-inst="vocals1" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/6.png" alt="Gesang (w)" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Gesang (w)</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Emotion & Präsenz</div>
+                  </button>
+
+                  <button class="CfgCard" type="button" data-inst="vocals2" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/7.png" alt="Gesang (m)" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Gesang (m)</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Druck & Präsenz</div>
+                  </button>
+
+                  <button class="CfgCard" type="button" data-inst="rap" aria-pressed="false">
+                    <div class="CfgCard__img"><img src="Resources/Configurator/7.png" alt="Rap" loading="lazy" /></div>
+                    <div class="CfgCard__top">
+                      <div class="CfgCard__name">Rap</div>
+                      <div class="CfgCard__tag">Optional</div>
+                    </div>
+                    <div class="CfgCard__desc">Peaks & Attitüde</div>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="CfgTools">
+              <button id="cfgReset" class="Btn Btn--ghost" type="button" style="display: none;"></button>
+              <div class="CfgCount" id="cfgCount"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <aside class="CfgRight">
+          <div class="CfgSticky">
+
+            <!-- METERS -->
+            <div class="CfgMeter">
+              <div class="CfgMeter__head">
+                <div class="CfgMeter__label">Party-Faktor</div>
+                <div class="CfgMeter__value" id="vParty">—</div>
+              </div>
+              <div class="CfgBar"><div class="CfgBar__fill" id="bParty"></div></div>
+              <div class="CfgStars" id="sParty"></div>
+            </div>
+
+            <div class="CfgMeter">
+              <div class="CfgMeter__head">
+                <div class="CfgMeter__label">Tanz-Faktor</div>
+                <div class="CfgMeter__value" id="vDance">—</div>
+              </div>
+              <div class="CfgBar"><div class="CfgBar__fill" id="bDance"></div></div>
+              <div class="CfgStars" id="sDance"></div>
+            </div>
+
+            <div class="CfgMeter">
+              <div class="CfgMeter__head">
+                <div class="CfgMeter__label">Background-Faktor</div>
+                <div class="CfgMeter__value" id="vBg">—</div>
+              </div>
+              <div class="CfgBar"><div class="CfgBar__fill" id="bBg"></div></div>
+              <div class="CfgStars" id="sBg"></div>
+            </div>
+
+            <div class="CfgMeter">
+              <div class="CfgMeter__head">
+                <div class="CfgMeter__label">Jazzclub-Faktor</div>
+                <div class="CfgMeter__value" id="vJazz">—</div>
+              </div>
+              <div class="CfgBar"><div class="CfgBar__fill" id="bJazz"></div></div>
+              <div class="CfgStars" id="sJazz"></div>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="CfgSummary" style="margin-top:14px;">
+
+              <!-- PRICE BOX -->
+              <div class="CfgPriceBox CfgPriceBox--hero">
+                <div class="CfgPriceTop">
+                  <div class="CfgSummary__title">Preis</div>
+                  <div class="CfgPriceHint" id="cfgPriceHint">zzgl. Fahrtkosten</div>
+                </div>
+
+                <div class="CfgPriceBig">
+                  <div class="CfgPricePrefix">AB</div>
+                  <div class="CfgPriceValue" id="cfgPrice">—</div>
+                  <div class="CfgPriceSuffix">€</div>
+                </div>
+
+                <div class="CfgPriceSub" id="cfgPriceSub"></div>
+              </div>
+
+              <div class="CfgLine"></div>
+
+              <!-- TECH -->
+              <div class="CfgTechBox">
+                <div class="CfgSummary__title">Technik & Downloads</div>
+
+                <div class="CfgTechRow">
+                  <div class="CfgTechLabel">Technikpläne für Ihre konfigurierte Besetzung</div>
+                  <div class="CfgTechValue" id="cfgTechName"></div>
+                </div>
+
+                <div class="CfgTechActions">
+                  <a class="Btn Btn--ghost" id="cfgRiderPdf" href="#" target="_blank" rel="noopener">Technical Rider (PDF)</a>
+                  <a class="Btn Btn--ghost" id="cfgStageplanPdf" href="#" target="_blank" rel="noopener">Bühnenplan (PDF)</a>
+                </div>
+
+                <div class="CfgTechHint" id="cfgTechHint">
+                  Technik wird je nach Location final mit Ihnen abgestimmt.
+                </div>
+              </div>
+
+              <!-- DIRECT CONTACT -->
+              <div class="CfgLine"></div>
+              <div class="CfgSummary__title">Direkt anfragen</div>
+
+              <div class="CfgContactGrid">
+                <div class="CfgContactField">
+                  <label class="CfgContactLabel" for="leadEmail">E-Mail</label>
+                  <input id="leadEmail" class="CfgContactInput" type="email"
+                         placeholder="z.B. name@mail.de" autocomplete="email" required>
+                </div>
+
+                <div class="CfgContactField">
+                  <label class="CfgContactLabel" for="leadPhone">Telefon</label>
+                  <input id="leadPhone" class="CfgContactInput" type="tel"
+                         placeholder="z.B. +49 171 1234567" autocomplete="tel">
+                </div>
+
+                <!-- Honeypot -->
+                <input id="hpCompany" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="HpField">
+              </div>
+
+              <div class="CfgContactActions">
+                <button id="cfgDirectSend" class="Btn Btn--accent" type="button">Jetzt direkt anfragen</button>
+                <div class="CfgContactStatus" id="cfgDirectStatus"></div>
+              </div>
+
+              <div class="CfgLine"></div>
+
+              <div class="CfgCTA">
+                <a class="Btn Btn--ghost" id="cfgMailLink" href="#" target="_blank" rel="noopener">Per Mail anfragen</a>
+                <a class="Btn Btn--ghost" id="cfgWhatsAppLink" href="#" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+
+            </div>
+
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ Footbar wie auf anderer Seite -->
   <div id="FootBar"></div>
 
-</body>
-
-</html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- ✅ jQuery + load() wie auf anderer Seite -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
 
 <script>
-  function ResizeFunction() {
-    if (window.innerWidth < 800) {
-      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
+(() => {
+  "use strict";
+
+  // =========================================================
+  // CONFIG
+  // =========================================================
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzF5Rfupb9ZJrOdWDJ-70JUw0vcefVsXaL_Dv2gC5eM7JhJ3WmBWW9dHRkaPwRNz1xn/exec";
+  const BOOKING_EMAIL = "lipa.musicservices@gmail.com";
+  const WHATSAPP_NUMBER = "4915225395955";
+
+  // Rate Limit: max. 3 Anfragen / 5 Minuten pro Rechner (localStorage)
+  const RL_KEY = "FG_CFG_SEND_TIMES";
+  const RL_WINDOW_MS = 5 * 60 * 1000;
+  const RL_MAX = 3;
+
+  // =========================================================
+  // DATA MODEL
+  // =========================================================
+  const INST = {
+    drums:   { label:"Drums",   group:"Rhythmus", locked:false, forced:false },
+    bass:    { label:"Bass",    group:"Rhythmus", locked:false, forced:false },
+    keys:    { label:"Keys",    group:"Rhythmus", locked:true,  forced:true  },
+    guitar:  { label:"Gitarre", group:"Rhythmus", locked:false, forced:false },
+
+    sax:     { label:"Sax",      group:"Horns",    locked:false, forced:false },
+    trumpet: { label:"Trompete", group:"Horns",    locked:false, forced:false },
+    trombone:{ label:"Posaune",  group:"Horns",    locked:false, forced:false },
+
+    vocals1: { label:"Gesang (w)", group:"Gesang", locked:false, forced:false },
+    vocals2: { label:"Gesang (m)", group:"Gesang", locked:false, forced:false },
+    rap:     { label:"Rap",        group:"Gesang", locked:false, forced:false },
+  };
+
+  // =========================================================
+  // ELEMENTS
+  // =========================================================
+  const playtime = document.getElementById("playtime");
+  const playtimeVal = document.getElementById("playtimeVal");
+  const cfgZip = document.getElementById("cfgZip");
+  const cfgDate = document.getElementById("cfgDate");
+
+  const cards = Array.from(document.querySelectorAll(".CfgCard[data-inst]"));
+  const resetBtn = document.getElementById("cfgReset");
+  const countEl = document.getElementById("cfgCount");
+
+  // Meter elements
+  const vParty = document.getElementById("vParty");
+  const vDance = document.getElementById("vDance");
+  const vBg    = document.getElementById("vBg");
+  const vJazz  = document.getElementById("vJazz");
+
+  const bParty = document.getElementById("bParty");
+  const bDance = document.getElementById("bDance");
+  const bBg    = document.getElementById("bBg");
+  const bJazz  = document.getElementById("bJazz");
+
+  const sParty = document.getElementById("sParty");
+  const sDance = document.getElementById("sDance");
+  const sBg    = document.getElementById("sBg");
+  const sJazz  = document.getElementById("sJazz");
+
+  // Price + Tech
+  const cfgPrice = document.getElementById("cfgPrice");
+  const cfgPriceSub = document.getElementById("cfgPriceSub");
+  const cfgTechName = document.getElementById("cfgTechName");
+  const cfgRiderPdf = document.getElementById("cfgRiderPdf");
+  const cfgStageplanPdf = document.getElementById("cfgStageplanPdf");
+  const cfgInputListPdf = document.getElementById("cfgInputListPdf");
+  const cfgTechHint = document.getElementById("cfgTechHint");
+
+  // Links
+  const mailLink = document.getElementById("cfgMailLink");
+  const waLink = document.getElementById("cfgWhatsAppLink");
+
+  // Direct send
+  const leadEmailEl = document.getElementById("leadEmail");
+  const leadPhoneEl = document.getElementById("leadPhone");
+  const hpCompanyEl = document.getElementById("hpCompany");
+  const btnDirectSend = document.getElementById("cfgDirectSend");
+  const directStatusEl = document.getElementById("cfgDirectStatus");
+
+  // =========================================================
+  // STATE
+  // =========================================================
+  const active = new Set();
+  Object.keys(INST).forEach(k => { if (INST[k].forced) active.add(k); });
+
+  // =========================================================
+  // HELPERS
+  // =========================================================
+  function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+
+  function listActiveLabels(){
+    return Array.from(active).map(k => INST[k]?.label).filter(Boolean);
+  }
+
+  function stars(val){
+    const n = clamp(Math.round((val / 100) * 4) + 1, 1, 5);
+    return "★★★★★".slice(0, n) + "☆☆☆☆☆".slice(0, 5-n);
+  }
+
+  function computeScores(){
+    // Regeln / Gewichte wie von dir beschrieben
+    const W = {
+      // RHYTHMUS
+      drums:   { party:+10, bg:-16, jazz:+14 },
+      bass:    { party:+6,  bg:-8,  jazz:+12 },  // halb so stark bg runter
+      keys:    { party:+6,  bg:-10, jazz:+14 },
+      guitar:  { party:+6,  bg:-8,  jazz:+12 },  // halb so stark bg runter
+
+      // HORNS
+      sax:     { party:+8,  bg:+14, jazz:+18 },
+      trumpet: { party:+8,  bg:-16, jazz:+18 },
+      trombone:{ party:+8,  bg:+14, jazz:+18 },
+
+      // GESANG
+      vocals1: { party:+28, bg:-14, jazz:-12 },
+      vocals2: { party:+28, bg:-14, jazz:-12 },
+      rap:     { party:+34, bg:-26, jazz:-16 },
+    };
+
+    let party = 0;
+    let dance = 0;
+    let bg    = 50;  // neutral start
+    let jazz  = 0;
+
+    for (const k of active){
+      const inst = INST[k];
+      const w = W[k] || {};
+
+      party += (w.party || 0);
+      bg    += (w.bg || 0);
+      jazz  += (w.jazz || 0);
+
+      // Tanz: nur Rhythmusgruppe, jedes = 25%
+      if (inst?.group === "Rhythmus") dance += 25;
     }
-    else {
-      $("#HeadBar").load("FixedPages/HeadBar.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
+
+    return {
+      party: clamp(party, 0, 100),
+      dance: clamp(dance, 0, 100),
+      bg:    clamp(bg,    0, 100),
+      jazz:  clamp(jazz,  0, 100),
+    };
+  }
+
+  // Preisformel:
+  // 110€/h Spielzeit pro Musiker + 100€ Fix pro Musiker
+  // Gebühren: 10% + 5% vom Gesamtbetrag => /0.85
+  function computePriceRange(){
+    const minutes = Number(playtime?.value || 90);
+    const hours = minutes / 60;
+    const musicians = active.size;
+
+    const perMusicianNet = 100 + 110 * hours;
+    const rawNet = musicians * perMusicianNet;
+    const gross = rawNet / 0.85;
+
+    const val = Math.round(gross);
+    return { low: val, high: val };
+  }
+
+  function formatEUR(n){
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  function formatDateDE(iso){
+    if (!iso || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return "";
+    const [y,m,d] = iso.split("-");
+    return `${d}.${m}.${y}`;
+  }
+
+  // Text für Mail/WhatsApp: OHNE Scores
+  function buildInquiryText(){
+    const minutes = Number(playtime?.value || 90);
+    const zip = (cfgZip?.value || "").trim();
+    const dateISO = (cfgDate?.value || "").trim();
+    const dateDE = formatDateDE(dateISO);
+
+    const email = (leadEmailEl?.value || "").trim();
+    const phone = (leadPhoneEl?.value || "").trim();
+    const labels = listActiveLabels();
+
+    return [
+      "FUNKgeræt Anfrage – Band-Konfigurator",
+      "",
+      "KONTAKT",
+      `E-Mail: ${email || "—"}`,
+      `Telefon: ${phone || "—"}`,
+      "",
+      "EVENT",
+      `Ort (PLZ): ${zip || "—"}`,
+      `Datum: ${dateDE || "—"}`,
+      `Spielzeit: ${minutes} min`,
+      "",
+      "BESETZUNG",
+      `${labels.join(", ") || "—"}`,
+      "",
+      `Zeitpunkt: ${new Date().toLocaleString("de-DE")}`
+    ].join("\n");
+  }
+
+  // =========================================================
+  // SYNC UI
+  // =========================================================
+  function syncCardsUI(){
+    for (const el of cards){
+      const k = el.getAttribute("data-inst");
+      const isOn = active.has(k);
+      const isLocked = !!INST[k]?.locked;
+
+      el.classList.toggle("is-on", isOn);
+      el.classList.toggle("is-locked", isLocked);
+      el.setAttribute("aria-pressed", isOn ? "true" : "false");
+    }
+    if (countEl) countEl.textContent = `${active.size} Musiker ausgewählt`;
+  }
+
+  function syncMeters(){
+    const sc = computeScores();
+
+    if (vParty) vParty.textContent = `${sc.party}/100`;
+    if (vDance) vDance.textContent = `${sc.dance}/100`;
+    if (vBg)    vBg.textContent    = `${sc.bg}/100`;
+    if (vJazz)  vJazz.textContent  = `${sc.jazz}/100`;
+
+    if (bParty) bParty.style.width = `${sc.party}%`;
+    if (bDance) bDance.style.width = `${sc.dance}%`;
+    if (bBg)    bBg.style.width    = `${sc.bg}%`;
+    if (bJazz)  bJazz.style.width  = `${sc.jazz}%`;
+
+    if (sParty) sParty.textContent = stars(sc.party);
+    if (sDance) sDance.textContent = stars(sc.dance);
+    if (sBg)    sBg.textContent    = stars(sc.bg);
+    if (sJazz)  sJazz.textContent  = stars(sc.jazz);
+  }
+
+  function syncPriceAndTech(){
+    const pr = computePriceRange();
+    if (cfgPrice) cfgPrice.textContent = formatEUR(pr.low);
+    if (cfgPriceSub) cfgPriceSub.textContent = "";
+
+    // Kein Rider-Logic mehr:
+    if (cfgTechName) cfgTechName.textContent = "";
+    // Links bleiben wie sie sind (oder du setzt sie später fix):
+    if (cfgRiderPdf && !cfgRiderPdf.getAttribute("href")) cfgRiderPdf.href = "#";
+    if (cfgStageplanPdf && !cfgStageplanPdf.getAttribute("href")) cfgStageplanPdf.href = "#";
+    if (cfgInputListPdf && !cfgInputListPdf.getAttribute("href")) cfgInputListPdf.href = "#";
+    if (cfgTechHint) cfgTechHint.textContent = "Technik wird je nach Location final mit Ihnen abgestimmt.";
+  }
+
+  function syncLinks(){
+    const txt = buildInquiryText();
+    const subject = encodeURIComponent("FUNKgeræt Anfrage (Band-Konfigurator)");
+    const body = encodeURIComponent(txt);
+
+    if (mailLink) mailLink.href = `mailto:${BOOKING_EMAIL}?subject=${subject}&body=${body}`;
+    if (waLink) waLink.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(txt)}`;
+  }
+
+  function fullUpdate(){
+    if (playtimeVal && playtime) playtimeVal.textContent = playtime.value;
+    syncCardsUI();
+    syncMeters();
+    syncPriceAndTech();
+    syncLinks();
+  }
+
+  // =========================================================
+  // RATE LIMIT (max 3 / 5 min)
+  // =========================================================
+  function getSendTimes(){
+    try{
+      const arr = JSON.parse(localStorage.getItem(RL_KEY) || "[]");
+      return Array.isArray(arr) ? arr : [];
+    }catch(e){
+      return [];
     }
   }
+
+  function setSendTimes(arr){
+    localStorage.setItem(RL_KEY, JSON.stringify(arr));
+  }
+
+  function canSendNow(){
+    const now = Date.now();
+    const cutoff = now - RL_WINDOW_MS;
+
+    const times = getSendTimes().filter(t => typeof t === "number" && t >= cutoff);
+    if (times.length >= RL_MAX){
+      const oldest = Math.min(...times);
+      const waitMs = (oldest + RL_WINDOW_MS) - now;
+      return { ok:false, waitMs: Math.max(0, waitMs) };
+    }
+    return { ok:true, waitMs:0 };
+  }
+
+  function registerSend(){
+    const now = Date.now();
+    const cutoff = now - RL_WINDOW_MS;
+    const times = getSendTimes().filter(t => typeof t === "number" && t >= cutoff);
+    times.push(now);
+    setSendTimes(times);
+  }
+
+  function formatWait(ms){
+    const s = Math.ceil(ms / 1000);
+    if (s <= 60) return `${s}s`;
+    const m = Math.ceil(s / 60);
+    return `${m}min`;
+  }
+
+  // =========================================================
+  // DIRECT SEND (Google Script)
+  // =========================================================
+  function cleanPhone(s){
+    return (s || "").replace(/[^\d+]/g, "").trim();
+  }
+
+  async function sendDirectInquiry(){
+    const email = (leadEmailEl?.value || "").trim();
+    const phone = cleanPhone(leadPhoneEl?.value || "");
+
+    // Rate Limit Check (client)
+    const rl = canSendNow();
+    if (!rl.ok){
+      if (directStatusEl) directStatusEl.textContent =
+        `⏳ Bitte kurz warten: max. ${RL_MAX} Anfragen in 5 Minuten. (${formatWait(rl.waitMs)} verbleibend)`;
+      return;
+    }
+
+    // honeypot
+    if ((hpCompanyEl?.value || "").trim().length > 0){
+      if (directStatusEl) directStatusEl.textContent = "Hmm… das hat nicht geklappt.";
+      return;
+    }
+
+    // E-Mail Pflicht
+    if (!email){
+      if (directStatusEl) directStatusEl.textContent = "Bitte E-Mail angeben.";
+      leadEmailEl?.focus();
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      if (directStatusEl) directStatusEl.textContent = "E-Mail sieht komisch aus 🙂";
+      leadEmailEl?.focus();
+      return;
+    }
+
+    const minutes = Number(playtime?.value || 90);
+    const zip = (cfgZip?.value || "").trim();
+    const dateISO = (cfgDate?.value || "").trim();
+
+    const pr = computePriceRange();
+    const payloadText = buildInquiryText();
+
+    const body = {
+      source: "FUNKgeraet-configurator",
+      createdAt: new Date().toISOString(),
+      email,
+      phone,
+      zip,
+      date: dateISO,
+      playtime: minutes,
+      selection: Array.from(active),
+      selectionLabels: listActiveLabels(),
+      price: { low: pr.low, high: pr.high, currency: "EUR" },
+      payloadText
+    };
+
+    if (btnDirectSend){
+      btnDirectSend.disabled = true;
+      btnDirectSend.dataset.oldText = btnDirectSend.textContent || "";
+      btnDirectSend.textContent = "Sende…";
+    }
+    if (directStatusEl) directStatusEl.textContent = "Wird gesendet…";
+
+    try{
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(body)
+      });
+
+      registerSend();
+      if (directStatusEl) directStatusEl.textContent = "✅ Anfrage ist raus. Wir melden uns innerhalb von 24 Stunden!";
+      if (btnDirectSend) btnDirectSend.textContent = "Gesendet";
+
+    }catch(e){
+      if (directStatusEl) directStatusEl.textContent = "❌ Netzwerkfehler. Bitte später nochmal.";
+      if (btnDirectSend){
+        btnDirectSend.textContent = btnDirectSend.dataset.oldText || "Jetzt direkt anfragen";
+        btnDirectSend.disabled = false;
+      }
+    }
+  }
+
+  // =========================================================
+  // INTERACTION
+  // =========================================================
+  cards.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const k = btn.getAttribute("data-inst");
+      if (!k) return;
+
+      if (INST[k]?.locked){
+        active.add(k);
+        fullUpdate();
+        return;
+      }
+
+      if (active.has(k)) active.delete(k);
+      else active.add(k);
+
+      fullUpdate();
+    });
+  });
+
+  resetBtn?.addEventListener("click", () => {
+    active.clear();
+    Object.keys(INST).forEach(k => { if (INST[k].forced) active.add(k); });
+    fullUpdate();
+  });
+
+  playtime?.addEventListener("input", fullUpdate);
+
+  cfgZip?.addEventListener("input", () => {
+    cfgZip.value = (cfgZip.value || "").replace(/[^\d]/g, "").slice(0, 5);
+    fullUpdate();
+  });
+
+  cfgDate?.addEventListener("input", fullUpdate);
+
+  btnDirectSend?.addEventListener("click", sendDirectInquiry);
+
+  // INIT
+  fullUpdate();
+})();
 </script>
+
+</body>
+</html>

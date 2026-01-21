@@ -1,0 +1,605 @@
+<!-- repertoire.html -->
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FUNKgeræt | Repertoire</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
+  <meta name="theme-color" content="#070a08" />
+
+  <style>
+    /* ================================
+       Repertoire – Setlist Setup (local)
+       ================================ */
+
+    /* Grid für Setlist-Kacheln (nutzt deine bestehenden Klassen, falls vorhanden) */
+    .SetGrid{
+      display:grid;
+      gap:16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+    @media (max-width: 820px){
+      .SetGrid{ grid-template-columns: 1fr; }
+    }
+
+    /* Kachel-Button */
+    .SetCardBtn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 18px;
+      padding: 18px 18px 16px;
+      cursor: default;
+      text-align:left;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+    .SetCardBtn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.24);
+      background: rgba(255,255,255,.06);
+    }
+
+    .SetCardTop{
+      display:flex;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    .SetKicker{
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .75;
+    }
+    .SetTitle{
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-top: 6px;
+    }
+    .SetMetaRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap:8px;
+      margin-top: 10px;
+      align-items:center;
+    }
+    .SetPill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      font-size: 13px;
+      opacity: .95;
+      white-space: nowrap;
+    }
+    .SetHint{
+      font-size: 13px;
+      opacity: .7;
+      white-space: nowrap;
+    }
+    .SetDesc{
+      margin: 10px 0 0;
+      opacity:.8;
+      line-height:1.45;
+      font-size: 14px;
+    }
+
+    /* =========================================
+       Overlay Transition (fade + slide)
+       ========================================= */
+
+    /* Grundzustand: unsichtbar + keine Klicks */
+    .Overlay{
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 180ms ease, visibility 180ms ease;
+    }
+    .Overlay .Overlay__backdrop{
+      opacity: 0;
+      transition: opacity 180ms ease;
+    }
+    .Overlay .Overlay__panel{
+      opacity: 0;
+      transform: translateY(10px) scale(.985);
+      filter: blur(2px);
+      transition: opacity 180ms ease, transform 180ms ease, filter 180ms ease;
+      will-change: opacity, transform, filter;
+      width: min(720px, 92vw);
+      max-height: min(70vh, 560px);
+      border-radius: 18px;
+    }
+    .Overlay .Overlay__body{
+      max-height: calc(min(70vh, 560px) - 170px);
+      overflow: auto;
+    }
+
+    .Overlay.is-open{
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .Overlay.is-open .Overlay__backdrop{
+      opacity: .75;
+    }
+    .Overlay.is-open .Overlay__panel{
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .Overlay,
+      .Overlay .Overlay__backdrop,
+      .Overlay .Overlay__panel{
+        transition: none !important;
+      }
+      .SetCardBtn{ transition:none !important; }
+    }
+
+    /* Overlay List */
+    .OverlayList{ list-style:none; padding:0; margin:0; }
+    .OvlRow{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .OvlRow:last-child{ border-bottom:none; }
+    .OvlTitle{ font-weight: 800; }
+    .OvlArtist{ opacity: .75; font-size: 13px; margin-top: 2px; }
+    .OvlYear{ opacity:.65; font-size: 13px; white-space:nowrap; }
+
+    /* Songwünsche Box (optional, aber Conversion!) */
+    .WishBox{
+      margin-top: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .WishTitle{ font-weight: 800; margin-bottom: 6px; }
+    .WishText{ opacity: .8; line-height:1.45; margin: 0 0 10px; }
+    .WishForm{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 820px){
+      .WishForm{ grid-template-columns: 1fr; }
+    }
+    .WishInput{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: inherit;
+      outline:none;
+    }
+    .WishInput::placeholder{ opacity:.6; }
+    .WishActions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+      align-items:center;
+    }
+    .WishSmall{
+      opacity:.7;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ Headbar -->
+  <div id="HeadBar"></div>
+
+  <!-- HERO -->
+  <header class="RepHero" aria-label="Repertoire">
+    <div class="RepHero__inner">
+      <div class="RepHero__badge">EVENTBAND • REPERTOIRE</div>
+      <h1 class="RepHero__title">Repertoire</h1>
+      <p class="RepHero__sub">
+        Hier sind vier typische Setlists für Events mit uns.
+      </p>
+
+      <div class="RepHero__chips" aria-label="Hinweise">
+        <div class="Chip"><span class="Dot"></span> Pool: <strong id="songCount">–</strong> Songs</div>
+        <div class="Chip"><span class="Dot"></span> Setlist wird pro Event angepasst</div>
+        <div class="Chip"><span class="Dot"></span> Songwünsche? Sehr gern.</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="RepPage">
+    <section class="RepShelf" aria-label="Beispiel-Setlists">
+
+      <div class="RepNote">
+        <div class="RepNote__title">Beispiel-Setlists</div>
+        <div class="RepNote__text">
+          Das sind vier typische „Vibe-Pakete“, wie unsere Abende oft aufgebaut sind.
+          Die finale Setlist passen wir pro Event an – inkl. Songwünschen, Energielevel und Publikum.
+        </div>
+      </div>
+
+      <div id="setlists" class="SetGrid" aria-label="Setlists"></div>
+
+    </section>
+  </main>
+
+  <!-- ✅ Footbar -->
+  <div id="FootBar"></div>
+
+  <!-- ======================================================
+       OVERLAY
+       ====================================================== -->
+  <div id="RepOverlay" class="Overlay" aria-hidden="true">
+    <div class="Overlay__backdrop" data-close="1"></div>
+
+    <div class="Overlay__panel" role="dialog" aria-modal="true" aria-labelledby="ovTitle">
+      <div class="Overlay__head">
+        <div class="Overlay__headLeft">
+          <div class="Overlay__kicker" id="ovKicker">Setlist</div>
+          <div id="ovTitle" class="Overlay__title">—</div>
+          <div id="ovMeta" class="Overlay__meta">—</div>
+        </div>
+
+        <button class="Overlay__close" type="button" aria-label="Overlay schließen" data-close="1">✕</button>
+      </div>
+
+      <div class="Overlay__body">
+        <ul id="ovList" class="OverlayList"></ul>
+      </div>
+
+      <div class="Overlay__foot">
+        <button id="ovCopy" class="Btn Btn--accent" type="button">Liste kopieren</button>
+        <button class="Btn Btn--ghost" type="button" data-close="1">Schließen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ jQuery load für HeadBar/FootBar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+
+  <script>
+  // =========================================================
+  // FUNKgeræt – Repertoire (4 Example Setlists + Hover Overlay)
+  // =========================================================
+
+  // Pool count (optional, du kannst später deinen echten Pool hier reinlegen)
+  const SONG_POOL_COUNT = 124; // <- wenn du willst später dynamisch aus einer echten Liste
+
+  // ---------- Setlists ----------
+  const SETLISTS = [
+    {
+      id: "wedding",
+      kicker: "Wedding • Classy → Party",
+      title: "Wedding Classy → Party Switch",
+      desc: "Elegant starten (Sektempfang/Dinner) und dann zuverlässig Richtung Tanzfläche eskalieren.",
+      songs: [
+        { title:"Valerie", artist:"Amy Winehouse", year:2007 },
+        { title:"Home", artist:"Michael Bublé", year:2005 },
+        { title:"Son of a preacher man", artist:"Dusty Springfield", year:1968 },
+        { title:"Ain't no mountain high enough", artist:"Marvin Gaye & Tammi Terrell", year:1967 },
+        { title:"You gotta be", artist:"Des'ree", year:1994 },
+        { title:"I love your smile", artist:"Shanice", year:1991 },
+        { title:"I try", artist:"Macy Gray", year:1999 },
+        { title:"Price tag", artist:"Jessie J", year:2011 },
+        { title:"Crazy", artist:"Gnarls Barkley", year:2006 },
+        { title:"No roots", artist:"Alice Merton", year:2017 },
+        { title:"All night long", artist:"Lionel Richie", year:1983 },
+        { title:"Celebration", artist:"Kool & The Gang", year:1980 },
+        { title:"September", artist:"Earth, Wind & Fire", year:1978 },
+        { title:"I wanna dance with somebody", artist:"Whitney Houston", year:1980 },
+        { title:"I will survive", artist:"Gloria Gaynor", year:1978 },
+      ]
+    },
+    {
+      id: "nineties",
+      kicker: "90s / 00s • Party",
+      title: "90s / 00s Party (Safe Hits)",
+      desc: "Nostalgie + Druck. Funktioniert auch bei „eigentlich tanzt hier keiner“-Publikum.",
+      songs: [
+        { title:"Sing halleluja", artist:"Dr. Alban", year:1993 },
+        { title:"Whatta man", artist:"Salt'n'Pepa", year:1993 },
+        { title:"No Scrubs", artist:"TLC", year:1999 },
+        { title:"Waterfalls", artist:"TLC", year:1995 },
+        { title:"Don't speak", artist:"No Doubt", year:1996 },
+        { title:"Wonderwall", artist:"Oasis", year:1995 },
+        { title:"Kiss from a rose", artist:"Seal", year:1994 },
+        { title:"Praise you", artist:"Fatboy Slim", year:1998 },
+        { title:"Getting jiggy with it", artist:"Will Smith", year:1997 },
+        { title:"Sexbomb", artist:"Tom Jones", year:1998 },
+        { title:"Smooth", artist:"Santana", year:1999 },
+        { title:"Lady Marmalade", artist:"Christina Aguilera, Lil’ Kim, Mýa & Pink", year:2001 },
+        { title:"Lose Yourself", artist:"Eminem", year:2002 },
+        { title:"Crazy", artist:"Seal", year:1990 },
+        { title:"You get what you give", artist:"New Radicals", year:1998 },
+      ]
+    },
+    {
+      id: "discofunk",
+      kicker: "Disco / Funk / Soul",
+      title: "Disco / Funk / Soul Night",
+      desc: "Durchgehend tanzbar, null Hänger. Euer „Wir sind Eventband“-Statement.",
+      songs: [
+        { title:"That's the way (I like it)", artist:"KC & The Sunshine Band", year:1975 },
+        { title:"Le freak", artist:"Chic", year:1977 },
+        { title:"We are family", artist:"Sister Sledge", year:1979 },
+        { title:"Hot stuff", artist:"Donna Summer", year:1979 },
+        { title:"Ladies night", artist:"Kool & The Gang", year:1979 },
+        { title:"Get down on it", artist:"Kool & The Gang", year:1981 },
+        { title:"Fresh", artist:"Kool & The Gang", year:1983 },
+        { title:"Ain't nobody", artist:"Chaka Khan", year:1983 },
+        { title:"Superstition", artist:"Stevie Wonder", year:1972 },
+        { title:"Brick house", artist:"Commodores", year:1977 },
+        { title:"Blame it on the boogie", artist:"The Jacksons", year:1978 },
+        { title:"Boogie Wonderland", artist:"Earth, Wind & Fire", year:1996 },
+        { title:"Let's groove", artist:"Earth, Wind & Fire", year:1979 },
+        { title:"September", artist:"Earth, Wind & Fire", year:1978 },
+        { title:"Celebration", artist:"Kool & The Gang", year:1980 },
+      ]
+    },
+    {
+      id: "modern",
+      kicker: "Modern Pop / Dance",
+      title: "Modern Pop / Dance / Festival",
+      desc: "Aktuell + eventkompatibel. Moderne Energie, ohne dass es „zu teeny“ wirkt.",
+      songs: [
+        { title:"Don't start now", artist:"Dua Lipa", year:2020 },
+        { title:"Hallucinate", artist:"Dua Lipa", year:2020 },
+        { title:"Be the one", artist:"Dua Lipa", year:2017 },
+        { title:"About damn time", artist:"Lizzo", year:2022 },
+        { title:"In the dark", artist:"Purple Disco Machine", year:2022 },
+        { title:"Shut up and dance", artist:"Walk the Moon", year:2014 },
+        { title:"Can't stop the feeling", artist:"Justin Timberlake", year:2016 },
+        { title:"24k magic", artist:"Bruno Mars", year:2016 },
+        { title:"Bad Guy", artist:"Billie Eilish", year:2019 },
+        { title:"Dynamite", artist:"Taio Cruz", year:2010 },
+        { title:"No roots", artist:"Alice Merton", year:2017 },
+        { title:"Valerie", artist:"Amy Winehouse", year:2007 },
+        { title:"Thriller", artist:"Michael Jackson", year:1982 },
+        { title:"Billie Jean", artist:"Michael Jackson", year:1982 },
+        { title:"Kiss", artist:"Prince", year:1986 },
+      ]
+    }
+  ];
+
+  // ---------- overlay ----------
+  const ov = document.getElementById("RepOverlay");
+  const ovPanel = ov.querySelector(".Overlay__panel");
+  const ovBackdrop = ov.querySelector(".Overlay__backdrop");
+
+  const ovKicker = document.getElementById("ovKicker");
+  const ovTitle  = document.getElementById("ovTitle");
+  const ovMeta   = document.getElementById("ovMeta");
+  const ovList   = document.getElementById("ovList");
+  const ovCopy   = document.getElementById("ovCopy");
+
+  // ---------- hover state ----------
+  let openTimer = null;
+  let closeTimer = null;
+  let isPanelHover = false;
+  let currentAnchorEl = null;
+  let currentSet = null;
+
+  const hoverOpenDelay  = 80;
+  const hoverCloseDelay = 140;
+
+  function escapeHtml(s){
+    return String(s)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#39;");
+  }
+
+  function positionPanelToAnchor(anchorEl){
+    if(!anchorEl) return;
+
+    const margin = 12;
+    const rect = anchorEl.getBoundingClientRect();
+
+    const pw = ovPanel.offsetWidth;
+    const ph = ovPanel.offsetHeight;
+
+    let left = rect.left + rect.width / 2 - pw / 2;
+    let top  = rect.top  + rect.height / 2 - ph / 2;
+
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    left = Math.max(margin, Math.min(left, vw - pw - margin));
+    top  = Math.max(margin, Math.min(top,  vh - ph - margin));
+
+    ovPanel.style.position = "fixed";
+    ovPanel.style.left = `${Math.round(left)}px`;
+    ovPanel.style.top  = `${Math.round(top)}px`;
+    ovPanel.style.transform = "none";
+  }
+
+  function openOverlayForSet(setObj, anchorEl){
+    currentSet = setObj;
+    currentAnchorEl = anchorEl || null;
+
+    ovKicker.textContent = setObj.kicker || "Setlist";
+    ovTitle.textContent  = setObj.title || "—";
+    ovMeta.textContent   = `${setObj.songs.length} Songs`;
+
+    ovList.innerHTML = setObj.songs.map(s => `
+      <li class="OvlRow">
+        <div class="OvlMain">
+          <div class="OvlTitle">${escapeHtml(s.title)}</div>
+          <div class="OvlArtist">${escapeHtml(s.artist)}</div>
+        </div>
+        <div class="OvlYear">${s.year ?? ""}</div>
+      </li>
+    `).join("");
+
+    ov.classList.add("is-open");
+    ov.setAttribute("aria-hidden", "false");
+
+    requestAnimationFrame(() => positionPanelToAnchor(currentAnchorEl));
+  }
+
+  function closeOverlay(){
+    ov.classList.remove("is-open");
+    ov.setAttribute("aria-hidden", "true");
+    currentAnchorEl = null;
+    currentSet = null;
+  }
+
+  // Panel hover: solange du im Panel bist, nicht schließen
+  ovPanel.addEventListener("pointerenter", () => {
+    isPanelHover = true;
+    clearTimeout(closeTimer);
+  });
+  ovPanel.addEventListener("pointerleave", () => {
+    isPanelHover = false;
+    clearTimeout(openTimer);
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => closeOverlay(), hoverCloseDelay);
+  });
+
+  // Backdrop: schließen wenn raus
+  ovBackdrop.addEventListener("pointerenter", () => {
+    if (isPanelHover) return;
+    clearTimeout(openTimer);
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(() => closeOverlay(), hoverCloseDelay);
+  });
+
+  // Click-to-close Backup
+  ov.addEventListener("click", (e) => {
+    const t = e.target;
+    if (t && t.getAttribute && t.getAttribute("data-close") === "1") closeOverlay();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && ov.classList.contains("is-open")) closeOverlay();
+  });
+
+  window.addEventListener("resize", () => {
+    if (ov.classList.contains("is-open")) positionPanelToAnchor(currentAnchorEl);
+  }, { passive:true });
+  window.addEventListener("scroll", () => {
+    if (ov.classList.contains("is-open")) positionPanelToAnchor(currentAnchorEl);
+  }, { passive:true });
+
+  // Copy current setlist
+  ovCopy.addEventListener("click", async () => {
+    if(!currentSet) return;
+
+    const lines = currentSet.songs.map(s => {
+      const y = (s.year ?? "").toString().trim();
+      const yPart = y ? ` (${y})` : "";
+      return `${s.title} — ${s.artist}${yPart}`;
+    });
+
+    const text = `${currentSet.title}\n${currentSet.kicker}\n\n` + lines.join("\n");
+
+    try{
+      await navigator.clipboard.writeText(text);
+      ovCopy.textContent = "✅ Kopiert";
+      setTimeout(() => ovCopy.textContent = "Liste kopieren", 1200);
+    }catch(err){
+      ovCopy.textContent = "❌ Geht hier nicht";
+      setTimeout(() => ovCopy.textContent = "Liste kopieren", 1400);
+    }
+  });
+
+  // ---------- render setlist cards ----------
+  function render(){
+    document.getElementById("songCount").textContent = String(SONG_POOL_COUNT);
+
+    const root = document.getElementById("setlists");
+    root.innerHTML = "";
+
+    for (const setObj of SETLISTS){
+      const card = document.createElement("div");
+      card.className = "SetCardBtn";
+      card.setAttribute("data-set", setObj.id);
+
+      card.innerHTML = `
+        <div class="SetCardTop">
+          <div>
+            <div class="SetKicker">${escapeHtml(setObj.kicker)}</div>
+            <div class="SetTitle">${escapeHtml(setObj.title)}</div>
+          </div>
+          <div class="SetMetaRow" style="justify-content:flex-end;">
+            <span class="SetPill">${setObj.songs.length} Songs</span>
+          </div>
+        </div>
+
+        <p class="SetDesc">${escapeHtml(setObj.desc)}</p>
+
+        <div class="SetMetaRow">
+          <span class="SetPill">Hover → komplette Liste</span>
+          <span class="SetHint">Setlist wird pro Event angepasst</span>
+        </div>
+      `;
+
+      // Hover open/close
+      card.addEventListener("pointerenter", () => {
+        clearTimeout(closeTimer);
+        clearTimeout(openTimer);
+        openTimer = setTimeout(() => openOverlayForSet(setObj, card), hoverOpenDelay);
+      });
+
+      card.addEventListener("pointerleave", () => {
+        clearTimeout(openTimer);
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(() => {
+          if (!isPanelHover) closeOverlay();
+        }, hoverCloseDelay);
+      });
+
+      root.appendChild(card);
+    }
+  }
+
+  render();
+
+  // ---------- Songwünsche: copy helper ----------
+  document.getElementById("copyWishes").addEventListener("click", async () => {
+    const wish = [1,2,3].map(i => document.getElementById("wish"+i).value.trim()).filter(Boolean);
+    const nog  = [1,2,3].map(i => document.getElementById("nog"+i).value.trim()).filter(Boolean);
+
+    const text =
+      `Songwünsche (Must-haves):\n` +
+      (wish.length ? wish.map((s,i)=>`- ${s}`).join("\n") : "- (keine angegeben)") +
+      `\n\nNo-gos:\n` +
+      (nog.length ? nog.map((s,i)=>`- ${s}`).join("\n") : "- (keine angegeben)");
+
+    const btn = document.getElementById("copyWishes");
+    try{
+      await navigator.clipboard.writeText(text);
+      btn.textContent = "✅ Kopiert";
+      setTimeout(()=> btn.textContent = "Wünsche kopieren", 1200);
+    }catch(e){
+      btn.textContent = "❌ Geht hier nicht";
+      setTimeout(()=> btn.textContent = "Wünsche kopieren", 1400);
+    }
+  });
+  </script>
+</body>
+</html>

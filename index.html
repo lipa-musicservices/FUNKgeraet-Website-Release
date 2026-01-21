@@ -1,136 +1,449 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FUNKger&aelig;t | Band</title>
-    <link rel="stylesheet" href="style.css"></link>
-    <link rel="stylesheet" href="styleHeadbar.css"></link>
-    <link rel="stylesheet" href="styleFootbar.css"></link>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FUNKgeræt | Band</title>
 
-    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+  <link rel="stylesheet" href="style.css" />
 
-    <link rel="icon" type="image/png" href="Resources/FG-Icon.png">
-  </head>
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
+  <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
+</head>
 
+<body>
+  <!-- Header via FixedPages -->
+  <div id="HeadBar"></div>
 
-
-  <body onresize="ResizeFunction()" onload="ResizeFunction()">
-    <div id="HeadBar"></div>
-
-    <div class="TitlePicture"><img width="100%" id="DesktopTitlePictureImg" src="Resources/TitlePic.png"></div>
-    <div class="TitlePicture"><img width="100%" id="MobilTitlePictureImg" src="Resources/FG-Icon.png"></div>
-
-    <div class="PageBackground">
-
-      <div class="Spacer"></div>
-      
-      <table class="FrameTable">
-        <tr>
-          <th class="FrameSides" width="10%"></th>
-          <th class="FrameContent" width="80%">
-            <div class="Spacer"></div>
-            <div class="Headline1">
-              Nächste Events
-            </div>
-            <div class="Spacer"></div>
-            <div class="Spacer"></div>
-          </th>
-          <th class="FrameSides" width="10%"></th>
-        </tr>
-        <tr>
-          <th class="FrameSides" width="10%"></th>
-          <th class="FrameContent" width="80%">
-            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FBerlin&showPrint=0&showNav=0&showTitle=0&showDate=0&mode=AGENDA&showTabs=0&showCalendars=0&showTz=0&src=MDQyMTIwNTEyOGVjMDY0M2RhNGQ5MGMwMTI0YzcyNDg1Y2RlYzZhNWQ3NGIxMWE4YzgxZTRmNDI5MDE2NDZhMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%23616161" style="border-width:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-            <div class="Spacer"></div><div class="Spacer"></div>
-          </th>
-          <th class="FrameSides" width="10%"></th>
-        </tr>
-        <tr>
-          <th class="FrameSides" width="10%"></th>
-          <th class="FrameContent" width="80%">
-            <div class="Spacer"></div>
-            <div class="Headline1">
-              Folgt uns:
-            </div>
-            <div class="Spacer"></div>
-            <div class="Spacer"></div>
-            <div class="BandLinks" width="100%">
-              <a class="BandLinksElement" href="https://www.instagram.com/funk_geraet/" target=”_blank”><img src="Resources/External/Instagram.png" style="width:6%;height:6%;"></a>&nbsp;&nbsp;
-              <a class="BandLinksElement" href="https://www.facebook.com/profile.php?id=61555508279087" target=”_blank”><img src="Resources/External/Facebook.png" style="width:6%;height:6%;"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="BandLinksElement" href="https://wa.me/491734745007" target=”_blank”><img src="Resources/External/Whatsapp.png" style="width:6%;height:6%;"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="BandLinksElement" href="https://app.backstagepro.de/funkgeraet" target=”_blank”><img src="Resources/External/BackstagePro.png" style="width:6%;height:6%;"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="BandLinksElement" href="mailto:funkgeraet.music@gmail.com?subject=FUNKgeraet-Website-Anfrage%20-%20FUNKgeraet" target=”_blank”><img src="Resources/External/Mail.png" style="width:6%;height:6%;"></a>
-              <a class="BandLinksElement" href="https://soundcloud.com/funkgeraet" target=”_blank”><img src="Resources/External/Soundcloud.png" style="width:6%;height:6%;"></a>&nbsp;&nbsp;&nbsp;&nbsp;
-              <a class="BandLinksElement" href="https://www.youtube.com/channel/UCT4uAwr1TG-jheFMXuurPGA" target=”_blank”><img src="Resources/External/Youtube.png" style="width:6%;height:6%;"></a>
-            </div>
-            <div class="Spacer"></div>
-            <div class="Spacer"></div>
-          </th>
-          <th class="FrameSides" width="10%"></th>
-        </tr>
-      </table>
+  <section class="HeroLogo" aria-label="FUNKgeræt Hero">
+    <div class="HeroLogo__inner">
+      <img class="HeroLogo__img" src="Resources/Logo.png" alt="FUNKgeræt Logo" />
     </div>
-    <div class="Spacer"></div>
-    <div class="Spacer"></div>
-    
-    <div id="FootBar"></div>
+  </section>
 
-  </body>
+  <main class="Page">
+    <!-- EVENTS -->
+    <section class="Section">
+      <div class="SectionHead">
+        <h1 class="SectionTitle">Nächste Events</h1>
+        <div class="SectionHint">Automatisch aktualisiert</div>
+      </div>
+
+      <div class="eventsControls">
+        <div style="display: none;" id="tagChips" class="chipRow" aria-label="Filter Tags"></div>
+        <div id="eventsHint" class="eventsHint">—</div>
+      </div>
+
+      <div id="eventsList" class="eventsList" aria-live="polite">
+        <div class="eventsEmpty">Lade Termine…</div>
+      </div>
+
+      <div class="SectionFooter">
+        <!-- ✅ Button darunter -->
+        <button id="togglePastBtn" class="Btn Btn--ghost" type="button" style="display:none;">
+          Vergangene Events anzeigen
+        </button>
+
+        <!-- "Mehr laden" bleibt zusätzlich -->
+        <button id="loadMoreBtn" class="Btn Btn--ghost" type="button" style="display:none; margin-left:10px;">
+          Mehr laden
+        </button>
+      </div>
+    </section>
+
+    <!-- FOLLOW -->
+    <section class="Section">
+      <div class="SectionHead">
+        <h2 class="SectionTitle">Folgt uns</h2>
+        <div class="SectionHint">News, Videos & Kontakt</div>
+      </div>
+
+      <div class="SocialGrid" aria-label="Social Links">
+        <a class="SocialChip" href="https://www.instagram.com/funk_geraet/" target="_blank" rel="noopener">
+          <img class="SocialChip__icon" src="Resources/External/Instagram.png" alt="" />
+          <span class="SocialChip__label">Instagram</span>
+          <span class="SocialChip__hint">@funk_geraet</span>
+        </a>
+
+        <a class="SocialChip" href="https://www.youtube.com/channel/UCT4uAwr1TG-jheFMXuurPGA" target="_blank" rel="noopener">
+          <img class="SocialChip__icon" src="Resources/External/Youtube.png" alt="" />
+          <span class="SocialChip__label">YouTube</span>
+          <span class="SocialChip__hint">Videos & Live</span>
+        </a>
+
+        <a class="SocialChip" href="https://soundcloud.com/funkgeraet" target="_blank" rel="noopener">
+          <img class="SocialChip__icon" src="Resources/External/Soundcloud.png" alt="" />
+          <span class="SocialChip__label">SoundCloud</span>
+          <span class="SocialChip__hint">Tracks</span>
+        </a>
+
+        <a class="SocialChip" href="https://wa.me/491734745007" target="_blank" rel="noopener">
+          <img class="SocialChip__icon" src="Resources/External/Whatsapp.png" alt="" />
+          <span class="SocialChip__label">WhatsApp</span>
+          <span class="SocialChip__hint">Schnell anfragen</span>
+        </a>
+
+        <a class="SocialChip" href="mailto:funkgeraet.music@gmail.com?subject=FUNKgeraet-Website-Anfrage%20-%20FUNKgeraet">
+          <img class="SocialChip__icon" src="Resources/External/Mail.png" alt="" />
+          <span class="SocialChip__label">E-Mail</span>
+          <span class="SocialChip__hint">Direkt schreiben</span>
+        </a>
+
+        <a class="SocialChip" href="https://app.backstagepro.de/funkgeraet" target="_blank" rel="noopener">
+          <img class="SocialChip__icon" src="Resources/External/BackstagePro.png" alt="" />
+          <span class="SocialChip__label">BackstagePro</span>
+          <span class="SocialChip__hint">Profil</span>
+        </a>
+
+        <a class="SocialChip" href="https://www.facebook.com/profile.php?id=61555508279087" target="_blank" rel="noopener">
+          <img class="SocialChip__icon" src="Resources/External/Facebook.png" alt="" />
+          <span class="SocialChip__label">Facebook</span>
+          <span class="SocialChip__hint">Seite</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer via FixedPages -->
+  <div id="FootBar"></div>
+
+  <!-- libs -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- partials -->
+  <script>
+    $("#HeadBar").load("FixedPages/HeadBar.html");
+    $("#FootBar").load("FixedPages/FootBar.html");
+  </script>
+
+  <!-- title image switch -->
+  <script>
+    function ActivateMobileView(){
+      const isMobile = window.innerWidth < 600;
+      document.querySelectorAll("[id^='Desktop']").forEach(el => el.style.display = isMobile ? "none" : "block");
+      document.querySelectorAll("[id^='Mobil']").forEach(el => el.style.display = isMobile ? "block" : "none");
+    }
+    window.addEventListener("load", ActivateMobileView);
+    window.addEventListener("resize", ActivateMobileView);
+  </script>
+
+  <!-- EVENTS -->
+  <script>
+    /* =========================
+       CONFIG
+       ========================= */
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwggY3Wc_iQZ58jdb5I83gZguXYLagXmUA7nD89wlLAIs3j9ut5Uxu3TWbEM1rvylwNWw/exec";
+    const SHEET_ID  = "1oFEXMdaS3tfXsILJPayhCyz8SDltD82l0dFll1ZlFOA";
+    const SHEET_TAB = "Tabellenblatt1";
+
+    const BAND_KEYWORDS = ["funkgeraet", "funkgeræt", "funkgerät"];
+
+    /* =========================
+       STATE
+       ========================= */
+    let ALL_EVENTS = [];
+    let FILTER_TAG = "";
+
+    // Default: kommende Events
+    let SHOW_PAST_ONLY = false;
+
+    let RENDER_LIMIT = 12;
+
+    /* =========================
+       JSONP loader
+       ========================= */
+    function loadJsonp(url) {
+      return new Promise((resolve, reject) => {
+        const cb = "cb_" + Math.random().toString(36).slice(2);
+        const s = document.createElement("script");
+        const t = setTimeout(() => { cleanup(); reject(new Error("timeout")); }, 12000);
+
+        function cleanup(){
+          clearTimeout(t);
+          try { delete window[cb]; } catch(e) {}
+          s.remove();
+        }
+
+        window[cb] = (data) => { cleanup(); resolve(data); };
+        s.onerror = () => { cleanup(); reject(new Error("jsonp failed")); };
+
+        const sep = url.includes("?") ? "&" : "?";
+        s.src = url + sep + "callback=" + cb;
+        document.head.appendChild(s);
+      });
+    }
+
+    async function fetchEvents(){
+      const url =
+        `${WEB_APP_URL}?sheetId=${encodeURIComponent(SHEET_ID)}&tab=${encodeURIComponent(SHEET_TAB)}&status=published&limit=400`;
+      const data = await loadJsonp(url);
+      if (!data || !data.ok) throw new Error(data && data.error ? data.error : "API error");
+      ALL_EVENTS = Array.isArray(data.events) ? data.events : [];
+    }
+
+    function initUI(){
+      const toggleBtn = document.getElementById("togglePastBtn");
+      toggleBtn.addEventListener("click", () => {
+        SHOW_PAST_ONLY = !SHOW_PAST_ONLY;
+        RENDER_LIMIT = 12;
+        renderAll();
+      });
+
+      document.getElementById("loadMoreBtn").addEventListener("click", () => {
+        RENDER_LIMIT += 12;
+        renderAll();
+      });
+
+      syncToggleButtonText();
+    }
+
+    function syncToggleButtonText(){
+      const btn = document.getElementById("togglePastBtn");
+      if (!btn) return;
+      btn.textContent = SHOW_PAST_ONLY ? "Nächste Events anzeigen" : "Vergangene Events anzeigen";
+    }
+
+    function renderAll(){
+      syncToggleButtonText();
+      renderTags();
+      renderList();
+      renderHint();
+    }
+
+    function renderHint(){
+      const hint = document.getElementById("eventsHint");
+      const shown = getFiltered().length;
+      hint.textContent = `${shown} Event(s) gefunden`;
+    }
+
+    function renderTags(){
+      const chipRow = document.getElementById("tagChips");
+
+      const tags = uniq(
+        ALL_EVENTS
+          .filter(isFunkgeraetBand)
+          .map(e => (e.tag || "").trim())
+          .filter(Boolean)
+      ).sort((a,b)=>a.localeCompare(b));
+
+      chipRow.innerHTML =
+        `<button class="chip ${FILTER_TAG==="" ? "is-active":""}" type="button" data-tag="">Alle</button>` +
+        tags.map(t => `<button class="chip ${FILTER_TAG===t ? "is-active":""}" type="button" data-tag="${escAttr(t)}">${esc(t)}</button>`).join("");
+
+      chipRow.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          FILTER_TAG = btn.getAttribute("data-tag") || "";
+          RENDER_LIMIT = 12;
+          renderAll();
+        });
+      });
+    }
+
+    function getFiltered(){
+      const today = isoDate(new Date());
+
+      const arr = ALL_EVENTS
+        .filter(isFunkgeraetBand)
+        .filter(e => !FILTER_TAG || (e.tag || "") === FILTER_TAG);
+
+      const filtered = arr.filter(e => {
+        if (!e.date) return false;
+        return SHOW_PAST_ONLY ? (e.date < today) : (e.date >= today);
+      });
+
+      filtered.sort((a,b) => {
+        const da = (a.startISO || a.date);
+        const db = (b.startISO || b.date);
+        return SHOW_PAST_ONLY ? db.localeCompare(da) : da.localeCompare(db);
+      });
+
+      return filtered;
+    }
+
+    function renderList(){
+      const list = document.getElementById("eventsList");
+      const btnMore = document.getElementById("loadMoreBtn");
+      const btnToggle = document.getElementById("togglePastBtn");
+
+      const filtered = getFiltered();
+      const slice = filtered.slice(0, RENDER_LIMIT);
+
+      if (!filtered.length){
+        list.innerHTML = `<div class="eventsEmpty">Keine Events.</div>`;
+        btnMore.style.display = "none";
+        // Toggle trotzdem anzeigen (damit man zurück schalten kann)
+        btnToggle.style.display = "inline-flex";
+        return;
+      }
+
+      list.innerHTML = slice.map(renderRow).join("");
+      attachRowClicks(list);
+
+      btnMore.style.display = (filtered.length > slice.length) ? "inline-flex" : "none";
+      btnToggle.style.display = "inline-flex";
+    }
+
+    function renderRow(e){
+      const time = (e.start && e.end) ? `${e.start}–${e.end}` : (e.start ? e.start : "");
+      const meta = [e.band, e.location].filter(Boolean).join(" · ");
+      const managed = e.managedBy ? `<span class="badge badge--dark">${esc(e.managedBy)}</span>` : "";
+      const tag = e.tag ? `<span class="badge badge--soft">${esc(e.tag)}</span>` : "";
+      const urlAttr = e.url ? `data-url="${escAttr(e.url)}"` : "";
+
+      return `
+        <article class="eRow" ${urlAttr}>
+          <div class="eRow__date">
+            <div class="eRow__day">${esc(dayShort(e.date))}</div>
+            <div class="eRow__num">${esc(dayNum(e.date))}</div>
+            <div class="eRow__mon">${esc(monthShort(e.date))}</div>
+          </div>
+
+          <div class="eRow__main">
+            <div class="eRow__top">
+              <div class="eRow__title">${esc(e.title)}</div>
+              <div class="eRow__time">${time ? esc(time) : "—"}</div>
+            </div>
+
+            ${meta ? `<div class="eRow__meta">${esc(meta)}</div>` : ``}
+
+            <div class="eRow__pills">
+              ${tag}
+              ${managed}
+              ${e.url ? `<span class="badge badge--link">Jetzt Tickets sichern!</span>` : ``}
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function attachRowClicks(container){
+      container.querySelectorAll(".eRow[data-url]").forEach(row => {
+        row.addEventListener("click", () => {
+          const url = row.getAttribute("data-url");
+          if (!url) return;
+          window.open(url, "_blank", "noopener");
+        });
+      });
+    }
+
+    /* ===== Band matching (tolerant) ===== */
+    function normBand(s){
+      return String(s ?? "")
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, "")
+        .replace(/æ/g, "ae")
+        .replace(/ä/g, "ae")
+        .replace(/ö/g, "oe")
+        .replace(/ü/g, "ue")
+        .replace(/ß/g, "ss");
+    }
+
+    function isFunkgeraetBand(e){
+      const b = normBand(e.band);
+      return BAND_KEYWORDS.some(k => b.includes(normBand(k)));
+    }
+
+    /* ===== Utilities ===== */
+    function isoDate(d){
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,"0");
+      const da = String(d.getDate()).padStart(2,"0");
+      return `${y}-${m}-${da}`;
+    }
+    function uniq(arr){ return [...new Set(arr)]; }
+    function parseIsoDate(s){
+      const [y,m,d] = String(s).split("-").map(n => parseInt(n,10));
+      return new Date(y, (m||1)-1, d||1);
+    }
+    function dayShort(iso){
+      const d = parseIsoDate(iso);
+      return d.toLocaleDateString("de-DE", { weekday:"short" }).replace(".", "");
+    }
+    function dayNum(iso){ return String(parseIsoDate(iso).getDate()).padStart(2,"0"); }
+    function monthShort(iso){
+      const d = parseIsoDate(iso);
+      return d.toLocaleDateString("de-DE", { month:"short" }).replace(".", "");
+    }
+    function esc(s){
+      return String(s ?? "").replace(/[&<>"']/g, m => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[m]));
+    }
+    function escAttr(s){ return esc(s).replace(/"/g, "&quot;"); }
+
+    /* =========================
+       Boot
+       ========================= */
+    (async function boot(){
+      initUI();
+      try{
+        await fetchEvents();
+        renderAll();
+      }catch(err){
+        console.error(err);
+        document.getElementById("eventsList").innerHTML =
+          `<div class="eventsEmpty">Fehler beim Laden. Check WEB_APP_URL & SHEET_ID.</div>`;
+        document.getElementById("eventsHint").textContent = "Fehler";
+        document.getElementById("loadMoreBtn").style.display = "none";
+        document.getElementById("togglePastBtn").style.display = "none";
+      }
+    })();
+  </script>
+
+  <script>
+(() => {
+  const hero = document.querySelector(".HeroLogo");
+  const img  = document.querySelector(".HeroLogo__img");
+  if (!hero) return;
+
+  const canTrack = window.matchMedia("(hover:hover) and (pointer:fine)").matches;
+  if (!canTrack) return; // nur Desktop
+
+  let targetX = 0, targetY = 0;
+  let curX = 0, curY = 0;
+  let raf = null;
+
+  function loop(){
+    curX += (targetX - curX) * 0.14;
+    curY += (targetY - curY) * 0.14;
+
+    hero.style.setProperty("--mx", curX + "px");
+    hero.style.setProperty("--my", curY + "px");
+
+    if (img){
+      const rect = hero.getBoundingClientRect();
+      const nx = (curX / rect.width  - 0.5);
+      const ny = (curY / rect.height - 0.5);
+      img.style.transform = `translate(${nx * 14}px, ${ny * 10}px) scale(1.03)`;
+    }
+
+    raf = requestAnimationFrame(loop);
+  }
+
+  function onMove(e){
+    const rect = hero.getBoundingClientRect();
+    targetX = e.clientX - rect.left;
+    targetY = e.clientY - rect.top;
+    if (!raf) raf = requestAnimationFrame(loop);
+  }
+
+  function onEnter(e){
+    onMove(e);
+    hero.classList.add("is-hover");
+  }
+
+  function onLeave(){
+    hero.classList.remove("is-hover");
+    if (img) img.style.transform = "";
+    if (raf){ cancelAnimationFrame(raf); raf = null; }
+  }
+
+  hero.addEventListener("mousemove", onMove, { passive:true });
+  hero.addEventListener("mouseenter", onEnter, { passive:true });
+  hero.addEventListener("mouseleave", onLeave, { passive:true });
+})();
+  </script>
+
+</body>
 </html>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-  function ResizeFunction() {
-
-    ActivateMobileView();
-
-    if (window.innerWidth < 800) {
-      $("#HeadBar").load("FixedPages/HeadBarCollapsed.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-    else {
-      $("#HeadBar").load("FixedPages/HeadBar.html"); 
-      $("#FootBar").load("FixedPages/FootBar.html"); 
-    }
-  }
-</script>
-
-<script>
-  function adjustImageMargin() {
-    
-}
-
-// Adjust on page load
-window.addEventListener('load', adjustImageMargin);
-
-// Adjust on window resize
-window.addEventListener('resize', adjustImageMargin);
-</script>
-
-<script>
-  function ActivateMobileView()
-  {
-    if(window.innerWidth < 600)
-    {
-      document.querySelectorAll("[id^='Desktop']").forEach(element => {
-      element.style.display = "none";
-      });
-
-      document.querySelectorAll("[id^='Mobil']").forEach(element => {
-      element.style.display = "block";
-      });
-    }
-    else
-    {
-      document.querySelectorAll("[id^='Mobil']").forEach(element => {
-      element.style.display = "none";
-      });
-
-      document.querySelectorAll("[id^='Desktop']").forEach(element => {
-      element.style.display = "block";
-      });
-    }
-  }
-</script>
