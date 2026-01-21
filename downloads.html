@@ -112,20 +112,15 @@
   <div id="FootBar"></div>
 
   <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
     function loadBars(){
-      if (window.innerWidth < 800) {
-        $("#HeadBar").load("FixedPages/HeadBarCollapsed.html");
-      } else {
-        $("#HeadBar").load("FixedPages/HeadBar.html");
-      }
+      if (window.innerWidth < 800) $("#HeadBar").load("FixedPages/HeadBar.html");
+      else $("#HeadBar").load("FixedPages/HeadBar.html");
       $("#FootBar").load("FixedPages/FootBar.html");
     }
-
     window.addEventListener("load", loadBars);
     window.addEventListener("resize", () => {
-      // nur neu laden, wenn wir die Schwelle wirklich überqueren
       const isMobile = window.innerWidth < 800;
       if (window.__fgWasMobile !== isMobile){
         window.__fgWasMobile = isMobile;
