@@ -8,176 +8,38 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="Resources/FG-Icon.png" />
   <meta name="theme-color" content="#070a08" />
-  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled" />
 
   <style>
-    .ContactPage{
-      width:min(1100px, calc(100% - 40px));
-      margin:0 auto;
-      padding: 24px 0 70px;
-    }
-    .ContactHero{
-      margin-top: 14px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      overflow:hidden;
-    }
-    .ContactHero__inner{ padding: 26px; }
-    .ContactBadge{
-      display:inline-flex;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,255,0,.22);
-      background: rgba(0,255,0,.06);
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-size: 12px;
-    }
-    .ContactTitle{
-      margin: 14px 0 6px;
-      font-size: clamp(26px, 3.2vw, 38px);
-      line-height: 1.1;
-      font-weight: 950;
-    }
-    .ContactSub{
-      margin:0;
-      opacity:.78;
-      line-height:1.5;
-      max-width: 70ch;
-    }
+    .ContactPage{ width:min(1100px, calc(100% - 40px)); margin:0 auto; padding: 24px 0 70px; }
+    .Card{ border-radius: 20px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); padding: 18px; }
+    .ContactGrid{ display:grid; grid-template-columns: 1.2fr .8fr; gap: 14px; margin-top: 14px; align-items:start; }
+    @media (max-width: 900px){ .ContactGrid{ grid-template-columns: 1fr; } }
 
-    .ContactGrid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      margin-top: 14px;
-      align-items:start;
-    }
-    @media (max-width: 900px){
-      .ContactGrid{ grid-template-columns: 1fr; }
-      .ContactHero__inner{ padding: 20px; }
-    }
+    .ContactHero{ margin-top:14px; border-radius:22px; border:1px solid rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); overflow:hidden; }
+    .ContactHero__inner{ padding:26px; }
+    .ContactBadge{ display:inline-flex; padding:8px 12px; border-radius:999px; border:1px solid rgba(0,255,0,.22); background: rgba(0,255,0,.06); font-weight:900; letter-spacing:.12em; text-transform:uppercase; font-size:12px; }
+    .ContactTitle{ margin:14px 0 6px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.1; font-weight: 950; }
+    .ContactSub{ margin:0; opacity:.78; line-height:1.5; max-width: 70ch; }
 
-    .Card{
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      padding: 18px;
-      overflow:hidden;
-    }
-
-    .FormGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    @media (max-width: 700px){
-      .FormGrid{ grid-template-columns: 1fr; }
-    }
+    .FormGrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    @media (max-width: 700px){ .FormGrid{ grid-template-columns: 1fr; } }
 
     .Field{ display:flex; flex-direction:column; gap:6px; }
-    .Label{ font-weight: 800; font-size: 13px; opacity: .9; }
-    .Input, .Textarea{
-      width:100%;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      color: inherit;
-      padding: 12px 12px;
-      outline: none;
-    }
-    .Textarea{ min-height: 160px; resize: vertical; line-height:1.45; }
+    .Label{ font-weight:800; font-size:13px; opacity:.9; }
+    .Input,.Textarea{ width:100%; border-radius:14px; border:1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.18); color: inherit; padding: 12px; outline:none; }
+    .Textarea{ min-height:160px; resize: vertical; line-height:1.45; }
 
-    .Actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 12px;
-      align-items:center;
-    }
-    .Btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color: inherit;
-      cursor:pointer;
-      font-weight: 900;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
-      text-decoration:none;
-      user-select:none;
-    }
-    .Btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.24);
-      background: rgba(255,255,255,.06);
-    }
-    .Btn--accent{
-      border-color: rgba(0,255,0,.35);
-      background: rgba(0,255,0,.08);
-    }
-    .Btn[disabled]{
-      opacity:.55;
-      cursor:not-allowed;
-      transform:none !important;
-    }
+    .Actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; align-items:center; }
+    .Btn{ display:inline-flex; align-items:center; justify-content:center; padding:12px 14px; border-radius:14px; border:1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.04); color: inherit; cursor:pointer; font-weight:900; transition: transform 160ms ease, border-color 160ms ease, background 160ms ease; user-select:none; }
+    .Btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.06); }
+    .Btn--accent{ border-color: rgba(0,255,0,.35); background: rgba(0,255,0,.08); }
+    .Btn[disabled]{ opacity:.55; cursor:not-allowed; transform:none !important; }
 
-    .Status{
-      margin-top: 10px;
-      font-size: 13px;
-      opacity: .90;
-      line-height: 1.4;
-      min-height: 18px;
-      white-space: pre-line;
-    }
+    .Status{ margin-top:10px; font-size:13px; opacity:.90; line-height:1.4; min-height: 18px; white-space: pre-line; }
+    .Tiny{ font-size:12px; opacity:.75; margin-top:10px; line-height:1.4; }
 
-    /* Honeypot unsichtbar */
-    .HpField{
-      position:absolute !important;
-      left:-9999px !important;
-      width:1px !important;
-      height:1px !important;
-      opacity:0 !important;
-      pointer-events:none !important;
-    }
-
-    .MiniHint{
-      opacity:.75;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .MailBox{
-      margin-top: 12px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .MailPill{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      text-decoration:none;
-      color: inherit;
-      font-weight: 900;
-    }
-
-    .Tiny{
-      font-size: 12px;
-      opacity: .75;
-      margin-top: 10px;
-      line-height: 1.4;
-    }
+    .HpField{ position:absolute !important; left:-9999px !important; width:1px !important; height:1px !important; opacity:0 !important; pointer-events:none !important; }
+    .MailPill{ display:inline-flex; gap:10px; align-items:center; padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.12); background: rgba(0,0,0,.18); text-decoration:none; color:inherit; font-weight:900; }
   </style>
 </head>
 
@@ -189,19 +51,14 @@
       <div class="ContactHero__inner">
         <div class="ContactBadge">KONTAKT</div>
         <h1 class="ContactTitle">Schreib uns.</h1>
-        <p class="ContactSub">
-          Kurze Nachricht reicht. Wir melden uns fix zurück.
-        </p>
+        <p class="ContactSub">Kurze Nachricht reicht. Wir melden uns fix zurück.</p>
       </div>
     </header>
 
     <section class="ContactGrid">
-      <!-- FORM -->
       <article class="Card" aria-label="Kontaktformular">
         <div style="font-weight:950; font-size:18px;">Kontaktformular</div>
-        <div class="MiniHint" style="margin-top:6px;">
-          Pflichtfelder: Name, E-Mail, Nachricht.
-        </div>
+        <div style="opacity:.75; font-size:13px; margin-top:6px;">Pflichtfelder: Name, E-Mail, Nachricht.</div>
 
         <form id="fgForm" autocomplete="on" novalidate>
           <div class="FormGrid">
@@ -215,15 +72,14 @@
               <input class="Input" id="email" name="email" type="email" required placeholder="name@mail.de" />
             </div>
 
-            <div class="Field" style="grid-column: 1 / -1;">
+            <div class="Field" style="grid-column:1 / -1;">
               <label class="Label" for="phone">Telefon (optional)</label>
               <input class="Input" id="phone" name="phone" type="tel" placeholder="+49 171 1234567" />
             </div>
 
-            <div class="Field" style="grid-column: 1 / -1;">
+            <div class="Field" style="grid-column:1 / -1;">
               <label class="Label" for="message">Nachricht *</label>
-              <textarea class="Textarea" id="message" name="message" required
-                placeholder="Worum geht’s? (Event, Anfrage, Fragen, etc.)"></textarea>
+              <textarea class="Textarea" id="message" name="message" required placeholder="Worum geht’s?"></textarea>
             </div>
           </div>
 
@@ -235,28 +91,16 @@
           </div>
 
           <div class="Status" id="status">—</div>
-
-          <div class="Tiny">
-            Anti-Spam: max. <b>3 Nachrichten pro 5 Minuten</b> pro Gerät.
-          </div>
+          <div class="Tiny">Anti-Spam: max. <b>3 Nachrichten pro 5 Minuten</b> pro Gerät.</div>
         </form>
       </article>
 
-      <!-- SIDE -->
       <aside class="Card" aria-label="Direktkontakt">
         <div style="font-weight:950; font-size:18px;">Direktkontakt</div>
-        <div class="MiniHint" style="margin-top:6px;">
-          
-        </div>
-
-        <div class="MailBox">
+        <div style="margin-top:12px;">
           <a class="MailPill" href="mailto:funkgeraet.music@gmail.com?subject=Website-Kontaktanfrage%20-%20FUNKgeraet">
             funkgeraet.music@gmail.com
           </a>
-        </div>
-
-        <div class="MiniHint" style="margin-top:12px;">
-          
         </div>
       </aside>
     </section>
@@ -267,36 +111,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
     function loadBars(){
-      if (window.innerWidth < 800) $("#HeadBar").load("FixedPages/HeadBar.html");
-      else $("#HeadBar").load("FixedPages/HeadBar.html");
+      $("#HeadBar").load("FixedPages/HeadBar.html");
       $("#FootBar").load("FixedPages/FootBar.html");
     }
     window.addEventListener("load", loadBars);
-    window.addEventListener("resize", () => {
-      const isMobile = window.innerWidth < 800;
-      if (window.__fgWasMobile !== isMobile){
-        window.__fgWasMobile = isMobile;
-        loadBars();
-      }
-    });
   </script>
 
   <script>
-    // =========================================================
-    // FUNKgeræt Contact Form — Clean v1 (Fetch + JSON Response)
-    // =========================================================
+    // ==========================================
+    // FUNKgeræt Contact — Frontend (v2 no-cors)
+    // ==========================================
 
-    // TODO: HIER DEINE /exec URL rein:
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwIQ_PBw0DM8HKCxT6zGQ-z6eJqdSOUQ4qjqOrSdV7wkhX0CQyUr-gAi1PNy5Q8fD9/exec";
+    // >>> HIER DEINE /exec URL rein:
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxBDHMRoCNnJetd3LtoiA0teQ6vQ15QxxopTHwgDKI5hPHOGxAIJjmjw53zZt3bX4wY/exec";
 
     const form = document.getElementById("fgForm");
     const statusEl = document.getElementById("status");
     const sendBtn = document.getElementById("sendBtn");
 
-    // Client-side Rate Limit (zusätzlich zum Serverlimit)
     const RL_KEY = "FG_CONTACT_SEND_TIMES";
     const RL_WINDOW_MS = 5 * 60 * 1000;
     const RL_MAX = 3;
+
+    const CID_KEY = "FG_CONTACT_CLIENT_ID";
 
     function setStatus(msg){ statusEl.textContent = msg; }
 
@@ -314,8 +151,7 @@
       const times = getSendTimes().filter(t => typeof t === "number" && t >= cutoff);
       if(times.length >= RL_MAX){
         const oldest = Math.min(...times);
-        const waitMs = (oldest + RL_WINDOW_MS) - now;
-        return { ok:false, waitMs: Math.max(0, waitMs) };
+        return { ok:false, waitMs: Math.max(0, (oldest + RL_WINDOW_MS) - now) };
       }
       return { ok:true, waitMs:0 };
     }
@@ -332,7 +168,6 @@
       return Math.ceil(s/60) + "min";
     }
 
-    const CID_KEY = "FG_CONTACT_CLIENT_ID";
     function getClientId(){
       let id = localStorage.getItem(CID_KEY);
       if(!id){
@@ -341,32 +176,29 @@
       }
       return id;
     }
-
     function newNonce(){
       return (crypto?.randomUUID ? crypto.randomUUID() : ("n_" + Math.random().toString(16).slice(2) + Date.now()));
     }
 
-    async function postJson(url, payload, timeoutMs=12000){
-      const ctrl = new AbortController();
-      const t = setTimeout(() => ctrl.abort(), timeoutMs);
-
+    async function sendNoCors(payload){
+      // 1) Versuch: fetch no-cors (keine Response lesbar, aber sendet zuverlässig)
       try{
-        const res = await fetch(url, {
+        await fetch(GOOGLE_SCRIPT_URL, {
           method: "POST",
-          mode: "cors",
-          headers: { "Content-Type": "text/plain;charset=utf-8" }, // GAS frisst das zuverlässig
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload),
-          signal: ctrl.signal
+          keepalive: true
         });
-
-        // GAS liefert JSON mit ContentService
-        const text = await res.text();
-        let json = null;
-        try{ json = JSON.parse(text); }catch(e){ json = { ok:false, error:"bad_json", details:text?.slice(0,300) }; }
-        return json;
-
-      } finally {
-        clearTimeout(t);
+        return true;
+      }catch(e){
+        // 2) Fallback: sendBeacon (noch "fire-and-forget"-iger)
+        try{
+          const blob = new Blob([JSON.stringify(payload)], { type: "text/plain;charset=utf-8" });
+          return navigator.sendBeacon(GOOGLE_SCRIPT_URL, blob);
+        }catch(_e){
+          return false;
+        }
       }
     }
 
@@ -386,11 +218,9 @@
       const hp = (document.getElementById("company").value || "").trim();
 
       if(hp){
-        // Bot -> tu so als ob alles gut wäre
         setStatus("✅ Anfrage abgeschickt. Wir melden uns fix zurück.");
         return;
       }
-
       if(!name || !email || !message){
         setStatus("❌ Bitte Name, E-Mail und Nachricht ausfüllen.");
         return;
@@ -406,6 +236,7 @@
 
       const payload = {
         name, email, phone, message,
+        company: "", // honeypot leer
         ua: navigator.userAgent,
         page: location.href,
         origin: (location.origin && location.origin !== "null") ? location.origin : "",
@@ -414,39 +245,21 @@
         ts: new Date().toISOString()
       };
 
-      try{
-        const res = await postJson(GOOGLE_SCRIPT_URL, payload, 12000);
+      const ok = await sendNoCors(payload);
 
-        if(res && res.ok){
-          registerSend();
-          setStatus("✅ Anfrage abgeschickt. Wir melden uns fix zurück.");
-          form.reset();
-          sendBtn.textContent = "Gesendet";
-          setTimeout(() => {
-            sendBtn.textContent = "Senden";
-            sendBtn.disabled = false;
-          }, 1400);
-          return;
-        }
-
-        // Fehlerfälle (Server-Errors)
-        const err = res?.error || "unknown";
-        if(err === "missing_fields") setStatus("❌ Bitte Name, E-Mail und Nachricht ausfüllen.");
-        else if(err === "bad_email") setStatus("❌ E-Mail sieht nicht korrekt aus.");
-        else if(err === "rate_limited") setStatus(`⏳ Zu viele Nachrichten. Bitte in ${fmtWait(Number(res.waitMs||0))} nochmal versuchen.`);
-        else if(err === "send_failed") setStatus("❌ Versand fehlgeschlagen. Bitte später nochmal versuchen.");
-        else if(err === "quota_exceeded") setStatus("❌ Mail-Quota leer (Apps Script). Morgen wieder oder anderes Konto.");
-        else if(err === "bad_json") setStatus("❌ Server-Antwort nicht lesbar. (Kein JSON zurückbekommen)");
-        else setStatus("❌ Fehler: " + err);
-
+      if(ok){
+        registerSend();
+        setStatus("✅ Anfrage abgeschickt. Wir melden uns fix zurück.");
+        form.reset();
+        sendBtn.textContent = "Gesendet";
+        setTimeout(() => {
+          sendBtn.textContent = "Senden";
+          sendBtn.disabled = false;
+        }, 1200);
+      } else {
+        setStatus("❌ Konnte nicht senden. Prüfe Script-URL oder Netzwerk.");
         sendBtn.disabled = false;
         sendBtn.textContent = "Senden";
-
-      } catch(ex){
-        sendBtn.disabled = false;
-        sendBtn.textContent = "Senden";
-        if(String(ex).includes("AbortError")) setStatus("❌ Timeout beim Senden. Bitte nochmal versuchen.");
-        else setStatus("❌ Senden fehlgeschlagen. Prüfe Internetverbindung / Script-URL.");
       }
     });
   </script>
